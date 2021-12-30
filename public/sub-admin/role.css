@@ -26,7 +26,7 @@
 .confirm-button {
     border-radius: 10px
 }
-/* -------- For from make sticky ---------- */
+/* -------- For from make sticky to top ---------- */
 div.sticky-form {
     position: -webkit-sticky;
     position: absolute;

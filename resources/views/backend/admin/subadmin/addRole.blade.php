@@ -43,7 +43,7 @@
                                     <div class="form-group form-field">
                                         <input type="text" name="name" id="first-name" class="form-control userName"
                                             placeholder="Enter Name" autocomplete="off" />
-                                        <small></small>
+                                        <small id="error"></small>
                                     </div>
                                     <div class="card-footer">
                                         <button type="submit" id="btnSubmit" class="btn btn-primary">Submit</button>

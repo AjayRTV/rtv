@@ -126,22 +126,28 @@ $(document).ready(function(){
                         url: "insert-userRole",
                         data: data,
                         dataType: "json",
-                        success:function(data){
-                            $('#animateDataTable').animate({width: "100%"});
-                            $('#MyForm-InsertData').hide();
-                            $('#role-table').DataTable().ajax.reload();
-                            $("#userRole-data")[0].reset();
-                            toastr.options ={
-                                "closeButton" : true,
-                            }
-                            toastr.success("Data is Inserted successfully");
+                        success:function(data){ 
+                            if(data == 'false'){
+                                $('#error').text("* Role Name is duplicate ");
+                                return false;
+                            } else{
+                                $('#animateDataTable').animate({width: "100%"});
+                                $('#MyForm-InsertData').hide();
+                                $('#role-table').DataTable().ajax.reload();
+                                $("#userRole-data")[0].reset();
+                                // $('#first-name').val('');
+                                toastr.options ={
+                                    "closeButton" : true,
+                                }
+                                toastr.success("Data is Inserted successfully");
+                            }    
                         },
-                        error: function(data){
+                        error: function(data){ alert("hey");
                             toastr.options ={
                                 "closeButton" : true,
                                 "progressBar" : true
                             }
-                            toastr.error("Data is not Inserted");
+                            toastr.error("Data is not Inserted successfully");
                         }
                     });
                 }

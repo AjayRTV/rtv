@@ -9,13 +9,13 @@ $(document).ready(function() {
 // });
 
 
-$(document).ready(function(){
+$(document).ready(function(){ 
    var table = $('#admin-table').DataTable({
         ajax: "admindata",
         columns: [ 
             {
                 data: 'name',
-                name: 'name'
+                name: 'name' 
             },
             {
                 data: 'email',
@@ -29,38 +29,18 @@ $(document).ready(function(){
         $('#admineditform').show();
     });
     
-    $('#AdminBack').click(function () { 
+    $('#AdminBack').click(function (e) { 
+        e.preventDefault()
         $('#editAdmin').animate({ width: "100%" });
         $("#admineditform").hide(); 
         $('#userroleForm').hide();
-        $('#blah').text("");
         $('#imgInp').val("");
-        
+        $('#blah').ajaxForm({target: '.preview'}).submit();
+         
         
     });
 
-
-    // var table = $('.data-table').DataTable({
-    //     processing: true,
-    //     serverSide: true,
-    //     ajax: "{{ route('userrole') }}",
-    //     columns: [{
-    //             data: 'id',
-    //             name: 'id'
-    //         },
-    //         {
-    //             data: 'name',
-    //             name: 'name'
-    //         },
-    //         {
-    //             data: 'email',
-    //             name: 'email'
-    //         },
-    //     ]
-    // });
-
-
-    // $("#editAdmin").click(function(stay){  
+      // $("#editAdmin").click(function(stay){  
         $("#admin-table").on('click', 'td', function (stay){
         var data =  table.row( this ).data();
         // console.log(data);    
@@ -148,14 +128,16 @@ $(document).ready(function(){
                 processData: false,
                 success: function (response) {     
                 console.log(response.value);    
-                   if( $.each(response.data, function( index, value ) {
+                   if( $.each(response.data, function( index, value ) {  
                         $("#admineditform").hide(); 
                         $("#userroleForm").hide();
                         $("#data-table").show();
                         $('#editAdmin').animate({ width: "100%" });
-                        $(".adminname").text(value.name);
-                        $('.adminemail').text(value.email); 
-                        $("#images").val(value.images);
+                        // $("#adminname").text(value.name);
+                        
+                        // $('#adminemail').text(value.email); 
+                        $("#imgInp").val("");
+                        $('#admin-table').DataTable().ajax.reload();
                         toastr.options =
                         {
                             "closeButton" : true,

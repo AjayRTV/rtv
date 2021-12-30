@@ -94,13 +94,13 @@ class AdminController extends Controller {
     public function updateAdmin( Request $request ) {
       try
         {
-            $file = $request->image;
+            $file = $request->image; 
             // $imagevalue = count( $request->image );
             $imagevalue = count( ( array )$file );
             $fileArray = array( 'image' => $file );
             $rules = array(
-                'image' => 'mimes:jpeg,jpg,png,gif|required|max:10000' // max 10000kb
-            );
+                'image' => 'mimes:jpeg,jpg,png,gif|required|max:1000000' // max 10000kb
+            ); 
             $validator = Validator::make( $fileArray, $rules );
             // if ( $imagevalue > 0 ) {
             if ( $validator->fails() && $imagevalue > 0 ) {
@@ -111,13 +111,12 @@ class AdminController extends Controller {
                 //  return response()->json( [ 'faild' => 200 ] );
 
                 return Redirect::to( '/' )->back( 'faild', 'Image is Not Type extension' );
-            } else {
+            } else { 
                 // ++++++++++++ Unlik Image +++++++++++++
-                if ( $request->image != '' ) {
+                if ( $file != '' ) {  
                     $dataimg = DB::table( 'users' )->get();
                     foreach ( $dataimg as $dataimgs ) {
                     }
-
                     // ++++++++++++ RemoveFolder Image +++++++++++++
                     $image_path = public_path( 'admin/img/'.$dataimgs->image );
                     if ( file_exists( $image_path ) ) {
@@ -134,7 +133,7 @@ class AdminController extends Controller {
                     DB::update( 'update users set name = ?, email = ?, image = ? where id = ?', [ $request->username, $request->email, $imageName, $request->userid ] );
                     $admindata = DB::table( 'users' )->get();
                         return response()->json( [ 'data' => $admindata ] );
-                } else {  
+                } else {   
                     // ++++++++++++ Update Data +++++++++++++
                     $admindata =  DB::update( 'update users set name = ?, email = ? where id = ?', [ $request->username, $request->email, $request->userid ] );
                     $admindata = DB::table( 'users' )->get();

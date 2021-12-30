@@ -154,7 +154,7 @@
                                                     </select>
                                                     <span id="userrole" style="color: red"></span>    
                                                 </div>
-                                            </div> 
+                                            </div> <br>
                                             <div class="card-footer">
                                                 <button type="submit" class="btn btn-primary" name="submit" id="addroleuser">Submit</button>
                                                 <span class="btn btn-primary" id="User_Back" >Back</span>

@@ -133,7 +133,7 @@ class AdminController extends Controller {
                     DB::update( 'update users set name = ?, email = ?, image = ? where id = ?', [ $request->username, $request->email, $imageName, $request->userid ] );
                     $admindata = DB::table( 'users' )->get();
                         return response()->json( [ 'data' => $admindata ] );
-                } else {  echo 2;exit;
+                } else {   
                     // ++++++++++++ Update Data +++++++++++++
                     $admindata =  DB::update( 'update users set name = ?, email = ? where id = ?', [ $request->username, $request->email, $request->userid ] );
                     $admindata = DB::table( 'users' )->get();

@@ -148,16 +148,16 @@
                                                 </div>
                                                 <div class="col-md-6 mt-1"  >
                                                     <select name="userrole" id="userRole" class="form-control text-pading" placeholder="Select Role">
-                                                        <option value="selectrole"  >Select Role</option>
+                                                        <option value="">Select-Role</option>
                                                         <option value="SubAdmin1">SubAdmin1</option>
                                                         <option value="SubAdmin2" >SubAdmin2</option>
                                                     </select>
-                                                    <span id="userrole" style="color: red"></span>    
+                                                    <span id="userroles" style="color: red"></span>    
                                                 </div>
                                             </div> <br>
                                             <div class="card-footer">
                                                 <button type="submit" class="btn btn-primary" name="submit" id="addroleuser">Submit</button>
-                                                <span class="btn btn-primary" id="User_Back" >Back</span>
+                                                <small class="btn btn-success" id="User_Back" >Back</small>
                                             </div>
                                         </div>
                                     </div> 

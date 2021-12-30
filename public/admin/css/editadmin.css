@@ -32,10 +32,55 @@ div#editAdmin {
         margin-top: -66%;
     }
 
+    span#AdminBack {
+        margin-left: 57%;
+        width: 50%;
+        height: 10%;
+        margin-top: -24%;
+        background: #2f7a2d;
+        /* color: white; */
+        padding: -6px;
+    }
+    button#Adminadd {
+        /* width: 50%; */
+        height: 10%;
+    }
     .card-from {
         width: 140%;
         height: 85%;
     }
+    div#admin-table_wrapper {
+        width: 73%;
+    }
+
+    .card-from {
+        width: 135%;
+        height: 103%;
+        margin-left: -50%;
+    }
   }
 
- 
+/*  
+    @media screen and (max-width: 360px) {
+        .card.card-primary.card-from {
+            width: 95%;
+            margin-left: 17%;
+            margin-top: -103%;
+            height: 88%;
+        }
+
+        div#editAdmin {
+            width: 72%;
+        }
+    } */
+
+    @media screen and (max-width: 360px){
+    .card.card-primary.card-from {
+        width: 69%;
+        margin-left: -16%;
+        margin-top: -84%;
+        height: 82%;
+    }
+
+    
+}

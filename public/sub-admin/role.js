@@ -1,28 +1,49 @@
 $(document).ready(function(){
-    /*------------- UserRole Table ------------------*/
-        $(function() {
+    /*------------- UserRoleList Table ------------------*/
          var table = $('#role-table').DataTable({
          processing: true,
          serverSide: false,
          ajax: "get-tableRole",
          columns: [
-             {
-                data: 'name',
-                name: 'name',
-            },
-        ],
-        //  order: [[ 0, 'ASC' ]],
-        responsive: true
+            { data: 'id', name: 'id',},
+            { data: 'name', name: 'name',},
+         ],
+         order: [[ 0, 'ASC' ]],
+         responsive: true
        });
-     });
-    /*------------- Show Click Function -----------------*/
-    $('#Mybtn').click(function(){
+    //*----------------EditForm show click function -------------------*
+       $("#role-table").on('click', 'td', function (){
+        var data =  table.row( this ).data();
         $('#animateDataTable').animate({width: "50%"});
-        $('#MyForm-data').show(100);
+        $('#MyForm-InsertData').show();
+        $.ajax({
+            url: "edit-userRole",
+            type: "get",
+            dataType: 'json',
+            data: data,
+            success: function(response){
+                if( $.each(response.data, function( index, value ) {
+                    $('#roleId').val(value.id);
+                    $('#first-name').val(value.name);
+                }));
+            }
+        });
     });
-    /*------------- Hide Click Function -----------------*/
+    //*----------------InsertForm Back Button -------------------*
+    $('#back-btn').click(function(event){
+        event.preventDefault();
+        $('#animateDataTable').animate({width: "100%"});
+        $('#MyForm-InsertData').hide();
+    });
+    /*------------- InsertForm Show Click Function -----------------*/
+    $('#Mybtn').click(function(e){
+        $('#animateDataTable').animate({width: "50%"});
+        $('#MyForm-InsertData').show(100);
+        $("#first-name").val('');
+        $("#roleId").val('');
+    });
+    /*-------------InsertForm Validation Hide Click Function -----------------*/
     const fname = document.querySelector('#first-name');
-    
     const form = document.querySelector('#userRole-data');
         /*---------------- First Name -------------*/
         const checkfName = () => {
@@ -51,51 +72,79 @@ $(document).ready(function(){
         const showError = (input, message) => {
             const formField = input.parentElement;
             formField.classList.remove('success');
-            formField.classList.add('error');      
+            formField.classList.add('error');
             const error = formField.querySelector('small');
             error.textContent = message;
         };
         const showSuccess = (input) => {
             const formField = input.parentElement;
             formField.classList.remove('error');
-            formField.classList.add('success');  
+            formField.classList.add('success');
             const error = formField.querySelector('small');
             error.textContent = '';
         };
         form.addEventListener('submit', function (e) {
             e.preventDefault();
-            let isfNameValid = checkfName();        
+            let isfNameValid = checkfName();
             let isFormValid = isfNameValid;
-            if (isFormValid) {
-                // var data = $(this).serialize();
-                var data = $('form').serialize();
-                console.log(data);
-                $.ajax({
-                    url: "insert-userRole",
-                    data: data,  
-                    dataType: "json",  
-                    success:function(data){
-                        $('#animateDataTable').animate({width: "100%"});
-                        $('#MyForm-data').hide();
-                        $('#role-table').DataTable().ajax.reload();
-                        $("#userRole-data")[0].reset();
-                        // For Tostore notify
-                        toastr.options =
-                        {
-                            "closeButton" : true,
+            var userIds = $('#roleId').val().length;
+            var userId = $('#roleId').val();
+            if(userIds > 0){
+                if (isFormValid) {
+                    var data = $(this).serialize()+"&id="+userId;
+                    console.log(data);
+                    $.ajax({
+                        url: "update-userRole",
+                        data: data,
+                        dataType: "json",
+                        success:function(data){
+                            $('#animateDataTable').animate({width: "100%"});
+                            $('#MyForm-InsertData').hide();
+                            $('#role-table').DataTable().ajax.reload();
+                            $("#userRole-data")[0].reset();
+                            $("#first-name").val('');
+                            toastr.options ={
+                                "closeButton" : true,
+                            }
+                            toastr.success("Data is Updated successfully");
+                        },
+                        error: function(data){
+                            toastr.options ={
+                                "closeButton" : true,
+                                "progressBar" : true
+                            }
+                            toastr.error("Data is not Updated");
                         }
-                          toastr.success("Data is Inserted successfully");
-                    },
-                    error: function(data){
-                        // $('#emails').text('Duplicate EMail');
-                        toastr.options =
-                        {
-                            "closeButton" : true,
-                            "progressBar" : true
-                        }
+                    });
+                }
+            }
+            else{
+                if (isFormValid) {
+                    var data = $(this).serialize();
+                    console.log(data);
+                    $.ajax({
+                        url: "insert-userRole",
+                        data: data,
+                        dataType: "json",
+                        success:function(data){
+                            $('#animateDataTable').animate({width: "100%"});
+                            $('#MyForm-InsertData').hide();
+                            $('#role-table').DataTable().ajax.reload();
+                            $("#userRole-data")[0].reset();
+                            toastr.options ={
+                                "closeButton" : true,
+                            }
+                            toastr.success("Data is Inserted successfully");
+                        },
+                        error: function(data){
+                            toastr.options ={
+                                "closeButton" : true,
+                                "progressBar" : true
+                            }
                             toastr.error("Data is not Inserted");
-                      }
-                });
+                        }
+                    });
+                }
             }
         });
         const debounce = (fn, delay = 500) => {
@@ -113,7 +162,7 @@ $(document).ready(function(){
                 switch (e.target.id) {
                     case 'first-name':
                         checkfName();
-                        break;  
+                        break;
                 }
             }));
 });

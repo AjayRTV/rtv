@@ -21,30 +21,21 @@
                 <div class="col-sm-12">
                     @foreach($admindata as $admindatas)
                     @endforeach
-                    <!-- <div class="table-responsive mt-12" id="editAdmin"> -->
-                    <div class="content " id="editAdmin">
-                        <!-- <div class="container-fluid"> -->
-                            <div class="row">
-                                <div class="col-sm-12 ">
-                                    <!-- <div class="card"> -->
-                                   
-                                    <div class="table-responsive mt-12" id="editAdmin">
-                                        <table id="admin-table" class="align-middle mb-0 table table-border  table-striped table-hover" width="100%">
-                                            <thead>
-                                                <tr>
-                                                    <th>  Name</th>
-                                                    <th> Email</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody id="showtable">
-                                            </tbody>
-                                        </table>
-                                    </div> 
-                                    </div>
-                                <!-- </div> -->
-                            </div>
-                        <!-- </div>      -->
-                    </div>            
+                    
+                    <div class="table-responsive mt-12" id="editAdmin">
+                        <table id="admin-table" class="align-middle mb-0 table table-border  table-striped table-hover" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>  Name</th>
+                                    <th> Email</th>
+                                </tr>
+                            </thead>
+                            <tbody id="showtable">
+                           
+                            </tbody>
+                        </table>
+                    </div> 
+                     
                      <!--  ------------------------ [Update Admin] -----------------------  -->
                     <div  class="col-sm-5 editadminform" id="admineditform" > 
                        <form method="POST" style="border: 0;margin-left: 8%;" class="UpdateAdminData" enctype="multipart/form-data" id="form1" >
@@ -68,7 +59,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                        <input accept="image/*" type='file' id="imgInp" />
+                                        <input accept="image/*" type='file' id="imgInp" name="image" />
                                         </div><span class="text-danger" id="adminImage">{{ $errors->first('title') }}</span>
                                     </div>
 
@@ -94,29 +85,22 @@
                                 <div class="col-sm-12 ">
                                     <div class="card">
                                         <div class="card-body">
-                                        <div class="table-responsive mt-5" id="animateTable">  
-                                             <table id="data-table" class="align-middle mb-0 table table-border  table-striped table-hover " width="100%">
-                                             <!-- <table id="data-table"  class="align-middle mb-0 table table-border  table-striped table-hover" cellspacing="0" width="100%"> -->
-                                                <thead>
-                                                    <tr>
-                                                        <th>id</th>
-                                                        <th>Full Name</th>
-                                                        <th>Contact</th>
-                                                        <th>Email</th>
-                                                        <th>Role</th>  
-                                                    </tr>
-                                                </thead>                
-                                                <tbody>
-                                                </tbody>
-                                            </table>  
-                                        </div> 
-                                            <!-- <div class="row"> -->
-                        <!-- <div class="col-md-12 	 col-over">
-                            <span id="userroleForm">
-                            <h2>User Role</h2>
-                                <button id="Mybtn" class="btn btn-primary float-right">AddUserRole</button><br><br> -->
-                            
-                           
+                                            <div class="table-responsive mt-5" id="animateTable">  
+                                                <table id="data-table" class="align-middle mb-0 table table-border  table-striped table-hover " width="100%">
+                                                <!-- <table id="data-table"  class="align-middle mb-0 table table-border  table-striped table-hover" cellspacing="0" width="100%"> -->
+                                                    <thead>
+                                                        <tr>
+                                                            <th>id</th>
+                                                            <th>Full Name</th>
+                                                            <th>Contact</th>
+                                                            <th>Email</th>
+                                                            <th>Role</th>  
+                                                        </tr>
+                                                    </thead>                
+                                                    <tbody>
+                                                    </tbody>
+                                                </table>  
+                                            </div> 
                                         </div>
                                     </div>
                                 </div>
@@ -173,7 +157,7 @@
                                             </div> 
                                             <div class="card-footer">
                                                 <button type="submit" class="btn btn-primary" name="submit" id="addroleuser">Submit</button>
-                                                <span  class="btn btn-primary" id="User_Back" >Back</span>
+                                                <span class="btn btn-primary" id="User_Back" >Back</span>
                                             </div>
                                         </div>
                                     </div> 

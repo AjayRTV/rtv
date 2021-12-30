@@ -84,7 +84,7 @@
                         </form>  
                     </div>
                 </div>
-                 <!-- ------------------------- [ For user Role ] ----------------------- -->
+                 <!-- ------------------------- [ For user Roles ] ----------------------- -->
                 <div id="userroleForm">
                      <!-- AddUser button -->
                     <div class="addfrom-btn mb-5">

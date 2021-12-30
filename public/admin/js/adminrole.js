@@ -29,13 +29,14 @@ $(document).ready(function(){
         $('#admineditform').show();
     });
     
-    $('#AdminBack').click(function () { 
+    $('#AdminBack').click(function (e) { 
+        e.preventDefault()
         $('#editAdmin').animate({ width: "100%" });
         $("#admineditform").hide(); 
         $('#userroleForm').hide();
-        $('#blah').text("");
         $('#imgInp').val("");
-        
+        $('#blah').ajaxForm({target: '.preview'}).submit();
+         
         
     });
 
@@ -156,6 +157,7 @@ $(document).ready(function(){
                         $(".adminname").text(value.name);
                         $('.adminemail').text(value.email); 
                         $("#images").val(value.images);
+                        $('#imgInp').val("");
                         toastr.options =
                         {
                             "closeButton" : true,

@@ -25,26 +25,23 @@
                     <div class="content " id="editAdmin">
                         <!-- <div class="container-fluid"> -->
                             <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="card">
+                                <div class="col-sm-12 ">
+                                    <!-- <div class="card"> -->
                                    
-                                        <div class="card-body">
-                                            <!-- <table id="admin-table"
-                                                class="align-middle mb-0 table table-border  table-striped table-hover"
-                                                cellspacing="0" width="100%"> -->
-                                                     <table id="admin-table" class="align-middle mb-0 table table-border  table-striped table-hover" width="100%">
-                                                <thead>
-                                                    <tr>
-                                                        <th>  Name</th>
-                                                        <th> Email</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="showtable">
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                    <div class="table-responsive mt-12" id="editAdmin">
+                                        <table id="admin-table" class="align-middle mb-0 table table-border  table-striped table-hover" width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <th>  Name</th>
+                                                    <th> Email</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="showtable">
+                                            </tbody>
+                                        </table>
+                                    </div> 
                                     </div>
-                                </div>
+                                <!-- </div> -->
                             </div>
                         <!-- </div>      -->
                     </div>            
@@ -76,8 +73,8 @@
                                     </div>
 
                                     <div class="card-footer">
-                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                        <button  class="btn btn-primary" id="AdminBack" >Back</button>
+                                        <button type="submit" class="btn btn-primary" id="Adminadd">Submit</button>
+                                        <span  class="btn btn-primary" id="AdminBack" >Back</span>
                                     </div>
                                 </div>
                             </div>   
@@ -91,13 +88,15 @@
                         <button id="Mybtn" class="btn btn-primary float-right add-bttn">Add-Role</button>
                     </div>
                     <!-- <div class="table-responsive  mt-5 " id="animateTable"> -->
-                    <section class="content " id="animateTable">
+                    <div class="content " id="animateTable">
                         <div class="container-fluid">
                             <div class="row">
-                                <div class="col-sm-12">
+                                <div class="col-sm-12 ">
                                     <div class="card">
                                         <div class="card-body">
-                                            <table id="data-table" class="align-middle mb-0 table table-border  table-striped table-hover" cellspacing="0" width="100%">
+                                        <div class="table-responsive mt-5" id="animateTable">  
+                                             <table id="data-table" class="align-middle mb-0 table table-border  table-striped table-hover " width="100%">
+                                             <!-- <table id="data-table"  class="align-middle mb-0 table table-border  table-striped table-hover" cellspacing="0" width="100%"> -->
                                                 <thead>
                                                     <tr>
                                                         <th>id</th>
@@ -109,13 +108,21 @@
                                                 </thead>                
                                                 <tbody>
                                                 </tbody>
-                                            </table>
+                                            </table>  
+                                        </div> 
+                                            <!-- <div class="row"> -->
+                        <!-- <div class="col-md-12 	 col-over">
+                            <span id="userroleForm">
+                            <h2>User Role</h2>
+                                <button id="Mybtn" class="btn btn-primary float-right">AddUserRole</button><br><br> -->
+                            
+                           
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </section>                        
+                    </div>                        
                     </div> 
                     <!-- User Form  -->
                     <div id="MyForm">
@@ -166,7 +173,7 @@
                                             </div> 
                                             <div class="card-footer">
                                                 <button type="submit" class="btn btn-primary" name="submit" id="addroleuser">Submit</button>
-                                                <button  class="btn btn-primary" id="User_Back" >Back</button>
+                                                <span  class="btn btn-primary" id="User_Back" >Back</span>
                                             </div>
                                         </div>
                                     </div> 

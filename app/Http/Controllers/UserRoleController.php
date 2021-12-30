@@ -51,9 +51,15 @@ class UserRoleController extends Controller{
     //*------------- Insert Data from Roleform  ---------------
     public function insertUserRole(Request $request){
         try {
-            $result = DB::table('role')->insert([
-                'name' => $request->name, ]);
-            return response()->json(['role' => $result]);
+            $duplicate = DB::table('role')->where('name', $request->name)->get();
+            if(count($duplicate) == 0){
+                $result = DB::table('role')->insert([
+                    'name' => $request->name, ]);
+                    return response()->json(['role' => $result]);
+            }else{
+                return response()->json('false');
+            }
+           
         } catch (Exception $e) {
             return response()->json('false');
         }

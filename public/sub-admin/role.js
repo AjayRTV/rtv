@@ -34,6 +34,7 @@ $(document).ready(function(){
         event.preventDefault();
         $('#animateDataTable').animate({width: "100%"});
         $('#MyForm-InsertData').hide();
+        $('#error').text("");
     });
     /*------------- InsertForm Show Click Function -----------------*/
     $('#Mybtn').click(function(e){
@@ -71,8 +72,6 @@ $(document).ready(function(){
         };
         const showError = (input, message) => {
             const formField = input.parentElement;
-            formField.classList.remove('success');
-            formField.classList.add('error');
             const error = formField.querySelector('small');
             error.textContent = message;
         };

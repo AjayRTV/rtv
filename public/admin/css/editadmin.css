@@ -1,0 +1,41 @@
+div#admineditform {
+    margin-left: 52%;
+    margin-top: -25%;
+}
+ 
+
+div#hidetable {
+    padding-right: -1%;
+    margin-left: -97%;
+}
+     
+    span#AdminBack {
+        margin-left: 9%;
+        width: 23%;
+        height: 9%;
+        background: #2f7a2d;
+        color: white;
+        
+    }
+
+div#editAdmin {
+    width: 101%;
+}
+ 
+@media screen and (max-width: 600px) {
+    .userroleForm {
+      width: 100%;
+      margin-top: 0;
+    }
+
+    div#admineditform {
+        margin-top: -66%;
+    }
+
+    .card-from {
+        width: 140%;
+        height: 85%;
+    }
+  }
+
+ 

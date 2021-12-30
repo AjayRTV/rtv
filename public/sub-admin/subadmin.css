@@ -1,0 +1,149 @@
+button#formButton {
+    margin-top: 20%;
+    margin-left: 3%;
+
+}
+  /* for validatkion */
+  span#fstname {
+    color: red;
+    font-size: 16px;
+}
+span#lstname {
+    color: red;
+    font-size: 16px;
+}
+span#contacts {
+    color: red;
+    font-size: 16px;
+}
+span#emails {
+    color: red;
+    font-size: 16px;
+}
+span#passwords {
+    color: red;
+    font-size: 16px;
+}
+form#form1{
+    padding: 20px;
+    /* border: 1px solid #666; */
+    /* background: #f2f2f2; */
+    display: none;
+    margin-top: 10%;
+    border-radius: 5%;
+}
+  
+
+/* User Role Form */
+#userroleForm {
+    display: none;
+    /* width: 300px; */
+    padding: 14px;
+    width: 100%;
+}
+.content-wrapper {
+    background-color: white;
+}
+
+/* Form Stiky */
+div.sticky {
+    position: -webkit-sticky;
+    position: absolute;
+    top: 680;
+    margin-right: 50;
+  }
+  .form-row.design {
+    width: 190%;
+}
+
+
+#MyForm{
+    display: none;
+    width: 45%;
+    padding: 20px;
+    margin-left: 590px;
+}
+
+
+.setpostion{
+    position:relative;
+    margin-top: -4%!important;
+    margin-left: 57%!important;
+    
+}
+
+div#setInput {
+    width: 198%;
+}
+ 
+ .setmarg {
+    padding-top: 2%;
+    margin-left: 2%;
+    width: 94%;
+}
+
+div#text-pading {
+    margin-top: 3%;
+ 
+}
+
+input#addroleuser {
+    width: 85%;
+    margin-left: 1%;
+}
+
+ 
+b#mrgback {
+    margin-left: 20%;
+}
+span#User_Back {
+    width: 22%;
+    /* color: white; */
+    background: #2f7a2d;
+    height: 20%;
+    margin-left: 6%;
+}
+
+/* Extra small devices (phones, 600px and down) */
+    @media only screen and (max-width: 600px) {
+        
+    div#userroleForm {
+        width: 140%;
+        padding: 1%;
+    }
+
+    #MyForm{
+        display: none;
+        width: 45%;
+        padding: 20px;
+        margin-left: 300px;
+    }
+    div.sticky {
+        position: -webkit-sticky;
+        position: absolute;
+        top: 550;
+        width: 20%;
+        margin-right: 50;
+    }
+    /* @media only screen and (max-width: 600px){
+        div.stickyform {
+            position: -webkit-sticky;
+            position: absolute;
+            margin-left: -89%;
+            top: 100%;
+            border: white;
+            border-radius: 2%;
+            padding: 20px;
+        }
+        span#User_Back {
+            width: 42%;
+            /* color: white; */
+            /* background: #2f7a2d;
+            height: 13%;
+        } */
+    /* } */
+}
+@media only screen and (min-width: 600px) {
+}
+@media only screen and (min-width: 768px) {
+}

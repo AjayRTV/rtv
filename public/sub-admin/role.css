@@ -1,80 +1,28 @@
-.content-wrapper {
-    background: white;
-}
-.add-bttn{
-    padding: 5px 40px;
-}
+.content-wrapper { background: white;}
+.add-bttn{ padding: 5px 40px;}
 /*---------------- Form CSS -----------------------*/
-.adit-userForm {
-    width: 500px;
-    background-color: white;
-    padding: inherit;
-}
-#MyForm-data{
+#MyForm-InsertData{
     display: none;
-    width: 45%;
-    border: 1px solid #fff;
     padding: 20px;
-    background: #fff;
     margin-left: 590px;
-    top: 80;
-    /* right: 0;   */
 }  
-.confirm-button-style {
-    margin-top: -10px;
-}
-.confirm-button {
-    border-radius: 10px
-}
-/* -------- For from make sticky to top ---------- */
-div.sticky-form {
+/* -------- For from make sticky ---------- */
+div.sticky-form{
     position: -webkit-sticky;
     position: absolute;
+    width: 30%;
     top: 180;
-    background-color: white;
     padding: 10px;
-    font-size: 20px;
   }
-/*------------------- Form inputs Fields ------------------*/
-  .form-field input {
-    height: 48px;
-    border: 2px solid #eee;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    padding: 10px;
-    margin-bottom: 5px;
-    font-size: 14px;
-    display: block;
-    width: 100%;
-}
-.form-field input:focus {
-    outline: none;
-}
 /*----- Form inputs Fields error message -----*/
-.form-field.error input {
-    border-color: red;
-}
-.form-field small {
-    color: red;
-}
-/* Media Query For datatable */
-/* Media Query For Form */
+.form-field.error input { border-color: red; }
+.form-field small { color: red;}
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
-        #MyForm-data {
-            margin-left: 100;    
-        }
-        /* .table-responsive {width: "50px";} */
 }
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
-    #MyForm-data {
-        margin-left: 60;    
-    }
 }
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
-    #MyForm-data {
-        margin-left: 600;    
-    }
 }

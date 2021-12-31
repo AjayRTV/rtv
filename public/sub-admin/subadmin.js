@@ -38,9 +38,10 @@ $(document).ready(function () {
         $("#contact").val("");
         $("#password").val("");
         $("#email").val("");
-        $("#userID").val("");
-        $("#selectRole").val("userRole");
-        setTimeout(function() {
+        $("#userID").val("");        
+        // $("#userroles").text("");    
+        // $("#selectRole").val("Select-Role").change();
+         setTimeout(function() {
             window.location.reload();
        },1000000000);
     });
@@ -52,8 +53,10 @@ $(document).ready(function () {
         $('#lstname').text('');
         $('#contacts').text('');
         $('#emails').text('');
-        $('#passwords').text('');
-    });
+        $('#passwords').text(''); 
+        $("#userroles").text("");
+        // $("#userRole").val().change();
+        });
     //  ------------------- [ Update Data user role] -------------------------
      $("#addroleuser").on('click', function (e) {
     //  $('input').keyup(function () {
@@ -68,55 +71,74 @@ $(document).ready(function () {
         var password = $("#password").val();
         var passwords = $("#password").val().length;
         var userrole = $("#userrole").val();
+
+        var userrole = $('#userRole :selected').text();
+       
+
+    //    alert(userrole);    
+        // var firstname = jQuery(this).val(); alert(firstname);
+        
+
         var userid = $("#userID").val().length;
         var userIds = $("#userID").val();
+
+      
         // ---------------- ['update_user Role'] --------------------
         if(userid > 0){
-            if( fname == "" || lname =="" || contact == "" || email =="" || password == "" || !email.match(regExp) || contact < 10   ){
+            if( fname == "" || lname =="" || contact == "" || email =="" || password == "" || !email.match(regExp) || contact < 10 || userrole == "Select-Role"  ){
                 if (fname == "") {
-                    $('#fstname').text('Enter First-Name');
+                    $('#fstname').text('*Enter First-Name');
                 }
                 if (lname == "") {
-                    $('#lstname').text('Enter Last-Name');
+                    $('#lstname').text('*Enter Last-Name');
                 }
                 if (contact == 0) {
-                    $('#contacts').text('Enter Contact');
-                }
+                    $('#contacts').text('*Enter Contact');
+                } 
                 if (email == "") {
-                    $('#emails').text('Enter mail');
+                    $('#emails').text('*Enter mail');
                 }
                 if (password == 0) {
-                    $('#passwords').text('Enter Password');
+                    $('#passwords').text('*Enter Password');
                 }
+                if(userrole == 'Select-Role'){
+                    $('#userroles').text("*Select Role");
+                }else{
+                    $('#userroles').text("");   
+                } 
+
+                
+
+
                 $('input').keyup(function () {
                     var fname = $("#first-name").val().length;
                     if (fname == 0) {
-                        $("#fstname").text(" Enter Name ");
+                        $("#fstname").text("* Enter Name ");
                         // return false;
                     }
                     else if (fname < 3) {
-                        $("#fstname").text(" Enter Minumum 3 charactor ");
+                        $("#fstname").text("* Enter Minumum 3 charactor ");
                     }
                     else if (fname > 2) {
                         $("#fstname").text(" ");
                     }
                     var lname = $("#last-name").val().length;
                     if (lname == 0) {
-                        $("#lstname").text(" Enter Minumum 3 charactor ");
+                        $("#lstname").text(" *Enter Minumum 3 charactor ");
                     }
                     else if (lname < 3) {
-                        $("#lstname").text(" Enter Minumum 3 charactor ");
+                        $("#lstname").text(" *Enter Minumum 3 charactor ");
                     }
                     else if (fname > 2) {
                         $("#lstname").text(" ");
                     }
                     var contact = $("#contact").val().length;
                     if (contact == 0) {
-                        $("#contacts").text(" Enter Contact Number ");
+                        $("#contacts").text(" *Enter Contact Number ");
                     } else if (contact < 10 && contact > 0) {
-                        $("#contacts").text(" Minimum 10 Numner ");
+                        $("#contacts").text("* Minimum 10 Numner ");
                     } else if (contact > 12) {
-                        $("#contacts").text("Maximum 12 charator");
+                        $("#contacts").text("*Maximum 12 charator");
                     } else if (contact == 10 && contact < 13) {
                         $("#contacts").text("");
                     }
@@ -125,25 +147,25 @@ $(document).ready(function () {
                     var regExp = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                     if(emails == 0   )
                     {
-                        $('#emails').text('Email is Required');
+                        $('#emails').text('*Email is Required'); 
                     }
                     else if (!email.match(regExp)) {
-                        $('#emails').text('Invalid Email');
+                        $('#emails').text('*Invalid Email');
                     }
                     else if (email != "" && email.match(regExp)) {
                         $('#emails').text('');
                     }
                     var password = $("#password").val().length;
                     if (password == 0) {
-                        $("#passwords").text(" Enter password ");
+                        $("#passwords").text(" *Enter password ");
                         return false;
                     }
                     else if (password < 6 && password > 0) {
-                        $('#passwords').text('Enter password Min 6 Charactor');
+                        $('#passwords').text('*Enter password Min 6 Charactor');
                         return false;
                     }
                     else if (password > 15) {
-                        $('#passwords').text('Enter Max  12 Charactor');
+                        $('#passwords').text('*Enter Max  12 Charactor');
                         return false;
                     }
                     else if (password == 6 && password <= 15) {
@@ -169,6 +191,7 @@ $(document).ready(function () {
                             $('#MyForm').hide();
                             $('.setpostion').hide();
                             $('#emails').val('');
+                            $("#userroles").text("");
                             toastr.options =
                             {
                                 "closeButton" : true,
@@ -189,79 +212,92 @@ $(document).ready(function () {
             }
         }
         // ------------------- ['User Role Insert] ---------------------
-        else{
-            if( fname == "" || lname =="" || contact == "" || email =="" || password == "" || !email.match(regExp) || contact < 10 || passwords < 6 ){
+        else{  
+            if( fname == "" || lname =="" || contact == "" || email =="" || password == "" || !email.match(regExp) || contact < 10 || passwords < 6 || userrole == "Select-Role"  ){
                 if (fname == "") {
-                    $('#fstname').text('Enter First-Name');
+                    $('#fstname').text('*Enter First-Name');
                 }
                 if (lname == "") {
-                    $('#lstname').text('Enter Last-Name');
+                    $('#lstname').text('*Enter Last-Name');
                 }
                 if (contact == 0) {
-                    $('#contacts').text('Enter Contact');
-                }
+                    $('#contacts').text('*Enter Contact');
+                } 
                 if (email == "") {
-                    $('#emails').text('Enter mail');
+                    $('#emails').text('*Enter mail');
                 }
                 if (password == 0) {
-                    $('#passwords').text('Enter Password');
+                    $('#passwords').text('*Enter Password');
                 }
-                $('input').keyup(function () {
-                    var fname = $("#first-name").val().length;
-                    if (fname == 0) {
-                        $("#fstname").text(" Enter Name ");
-                        // return false;
-                    }
-                    else if (fname < 3) {
-                        $("#fstname").text(" Enter Minumum 3 charactor ");
-                    }
-                    else if (fname > 2) {
+                if(userrole == 'Select-Role'){
+                    $('#userroles').text("*Select Role");
+                }else{
+                    $('#userroles').text("");   
+                }
+                var fname = $("#first-name").val().length;
+                $("#first-name").keydown(function (event) {  
+                    var adminname = $("#first-name").val().length;
+                    if (adminname < 2) {
+                        $("#fstname").text("Enter Minumum 3 charactor ");
+                  
+                    }else if (adminname > 1) {
                         $("#fstname").text(" ");
                     }
+                    
+                });      
+
+                $("#last-name").keydown(function (event) {  
                     var lname = $("#last-name").val().length;
-                    if (lname == 0) {
-                        $("#lstname").text(" Enter Minumum 3 charactor ");
+                    if (lname  < 2) {
+                        $("#lstname").text("*Enter Minumum 3 charactor ");
                     }
-                    else if (lname < 3) {
-                        $("#lstname").text(" Enter Minumum 3 charactor ");
-                    }
-                    else if (fname > 2) {
+                    else if (lname > 1) {
                         $("#lstname").text(" ");
                     }
+                });      
+
+                $("#contact").keydown(function (event) {   
                     var contact = $("#contact").val().length;
                     if (contact == 0) {
-                        $("#contacts").text(" Enter Contact Number ");
+                        $("#contacts").text("*Enter Contact Number ");
                     } else if (contact < 10 && contact > 0) {
-                        $("#contacts").text(" Minimum 10 Numner ");
+                        $("#contacts").text("*Minimum 10 Numner ");
                     } else if (contact > 12) {
-                        $("#contacts").text("Maximum 12 charator");
+                        $("#contacts").text("*Maximum 12 charator");
                     } else if (contact == 10 && contact < 13) {
                         $("#contacts").text("");
                     }
+                });      
+
+
+                $("#email").keydown(function (event) {   
                     var emails = $("#email").val().length;
                     var email = $("#email").val();
                     var regExp = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                     if(emails == 0   )
                     {
-                        $('#emails').text('Email is Required');
+                        $('#emails').text('*Email is Required'); 
                     }
                     else if (!email.match(regExp)) {
-                        $('#emails').text('Invalid Email');
+                        $('#emails').text('*Invalid Email');
                     }
                     else if (email != "" && email.match(regExp)) {
                         $('#emails').text('');
                     }
+                });      
+
+                $('#password').keyup(function () {
                     var password = $("#password").val().length;
                     if (password == 0) {
-                        $("#passwords").text(" Enter password ");
+                        $("#passwords").text("*Enter password ");
                         return false;
                     }
                     else if (password < 6 && password > 0) {
-                        $('#passwords').text('Enter password Min 6 Charactor');
+                        $('#passwords').text('*Enter password Min 6 Charactor');
                         return false;
                     }
                     else if (password > 15) {
-                        $('#passwords').text('Enter Max  12 Charactor');
+                        $('#passwords').text('*Enter Max  12 Charactor');
                         return false;
                     }
                     else if (password == 6 && password <= 15) {
@@ -313,11 +349,17 @@ $(document).ready(function () {
         var data =  table.row( this ).data();
         $("#fstname").text(" ");
         $("#lstname").text(" ");
-        $('#emails').text('');
+        // $('#emails').text('');
+        // $('#passwords').text('');
+        // $("#contacts").text("");
+        // console.log(data);
+        // $('#user-Role > option[data="'+ userrole +'"]').prop('selected', true);
+        $('#emails').text(''); 
         $('#passwords').text('');
         $("#contacts").text("");
-        console.log(data);
-        $('#user-Role > option[data="'+ userrole +'"]').prop('selected', true);
+        $("#userroles").text("");
+   
+        // $('#user-Role > option[data="'+ userrole +'"]').prop('selected', true);
         $('#animateTable').animate({ width: "50%" });
         $('#MyForm').show();
         $.ajax({

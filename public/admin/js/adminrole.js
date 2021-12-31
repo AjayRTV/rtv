@@ -79,35 +79,34 @@ $(document).ready(function(){
         e.preventDefault();      
         var formData = new FormData(this);
         var adminname = $('#username').val();  
+        var adminnames = $("#username").val().length; 
         var adminEmail = $('#adminemail').val();
         var regExp = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-       
+        if(adminname == ""){ 
+            $("#adminName").text("Enter User Name ");
+        }
         if( adminname == "" || adminEmail =="" || !adminEmail.match(regExp)  )
         { 
-            var adminname = $('#username').val().length;
-            if (adminname == 0) {  
-                $('#adminName').text('Enter Name ');
-            }   
+            var adminname = $("#username").val();
+            var emails = $("#adminemail").val();
+            if(adminname == ""){ 
+                $("#adminName").text("Enter User Name ");
+            }
             var emails = $("#adminemail").val().length;
-            if (emails < 0) { 
+            if (emails == 0) { 
                 $('#adminEmail').text('Enter Email ');
             }  
-            var email = $("#adminemail").val();
-            var regExp = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            if (!email.match(regExp)) {
-                $('#adminEmail').text('Invalid Email');
-            }
-            else if (email != "" && email.match(regExp)) {
-                $('#adminEmail').text(''); 
-            }
-            $('input').keyup(function () {
+            
+            $("#username").keydown(function (event) {
                 var adminname = $("#username").val().length;
-                if (adminname < 3) {
+                if (adminname < 2) {
                     $("#adminName").text("Enter Minumum 3 charactor ");
-                    // return false;
+              
                 }else if (adminname > 2) {
                     $("#adminName").text(" ");
                 }
+            });  
+            $('input').keyup(function () {
                 var email = $("#adminemail").val();
                 var regExp = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                 if (!email.match(regExp)) {
@@ -116,8 +115,16 @@ $(document).ready(function(){
                 else if (email != "" && email.match(regExp)) {
                     $('#adminEmail').text(''); 
                 }
-            });    
+            }); 
+            if(adminnames < 4){
+                $("#adminName").text("Enter User Name ");
+                return false;
+            }if(adminnames > 2){
+                 $("#adminName").text("");
+             }
         }
+         
+            
         else{
             $.ajax({
                 type:'post',

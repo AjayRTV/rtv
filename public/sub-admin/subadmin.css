@@ -121,11 +121,13 @@ span#User_Back {
     div.sticky {
         position: -webkit-sticky;
         position: absolute;
-        top: 730px;
-        width: 20%;
-        margin-right: 50;
+        top: 109%;
+        width: 23%;
+        margin-left: -10%;
     }
-
+    small#User_Back {
+        WIDTH: 98%;
+    }
     span#User_Back {
         width: 53%;
         /* color: white; */
@@ -143,6 +145,31 @@ span#User_Back {
         margin-left: -5%;
         height: 36px;
     }
+    @media screen and (max-width: 360px){
+        .card.card-primary.card-from {
+            width: 87%;
+            margin-left: -8%;
+            margin-top: -54%;
+            height: 70%;
+        }
+    }
+    /* @media only screen and (max-width: 600px){
+        div.stickyform {
+            position: -webkit-sticky;
+            position: absolute;
+            margin-left: -89%;
+            top: 100%;
+            border: white;
+            border-radius: 2%;
+            padding: 20px;
+        }
+        span#User_Back {
+            width: 42%;
+            /* color: white; */
+            /* background: #2f7a2d;
+            height: 13%;
+        } */
+    /* } */
 }
 @media only screen and (min-width: 600px) {
 }

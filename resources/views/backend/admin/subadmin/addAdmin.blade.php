@@ -46,23 +46,26 @@
                                         <input type="hidden" name="userid" class="form-control" id="userid" placeholder="Enter email"  value=" {{  $admindatas->id }} ">
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputPassword1">User Name</label>
-                                        <input type="text" class="form-control" name="username" id="username"  value=" {{  $admindatas->name }} ">
+                                        <label for="exampleInputPassword1">User-Name</label>
+                                        <input type="text" class="form-control" name="username" onkeypress="return /[a-z, ' ']/i.test(event.key)" id="username"  value="{{$admindatas->name}}">
+                                        <span id="adminName" style="color: red;"></span>
                                     </div>
+                                    
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Email Address</label>
                                         <input type="email" name="email" class="form-control" id="adminemail" aria-describedby="emailHelp" value=" {{  $admindatas->email }} ">
+                                        <span id="adminEmail" style="color: red;"></span>
                                     </div>
-                                    
+                                 
                                     <div class="col-md-12 mb-2">
                                         <img id="blah" src="{{asset('admin/img/' . $admindatas->image)}}" alt="preview image" style="max-height: 60px;" />
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                        <input accept="image/*" type='file' id="imgInp" name="image" />
-                                        </div><span class="text-danger" id="adminImage">{{ $errors->first('title') }}</span>
+                                          <input accept="image/*" type='file' id="imgInp" name="image" />
+                                        </div>
                                     </div>
-
+                                    <span class="text-danger" id="adminImage">{{ $errors->first('title') }}</span>   
                                     <div class="card-footer">
                                         <button type="submit" class="btn btn-primary" id="Adminadd">Submit</button>
                                         <span  class="btn btn-success" id="AdminBack" >Back</span>
@@ -123,11 +126,11 @@
                                                     <input type="hidden" id="userID">  
                                                 <div class="row">  
                                                     <div class="col-md-6" >
-                                                        <input type="text" name="firstname" id="first-name" class="form-control" placeholder="First Name">
+                                                        <input type="text" name="firstname" id="first-name" onkeypress="return /[a-z]/i.test(event.key)" class="form-control" placeholder="First Name">
                                                         <span id="fstname"></span>   
                                                     </div>
                                                     <div class="col-md-6" >
-                                                        <input type="text" id="last-name" name="lastusername" class="form-control text-pading" placeholder="Last Name">
+                                                        <input type="text" id="last-name" name="lastusername" onkeypress="return /[a-z]/i.test(event.key)" class="form-control text-pading" placeholder="Last Name">
                                                         <span id="lstname" ></span>    
                                                     </div>
                                                  </div>
@@ -147,18 +150,19 @@
                                                     <span id="passwords"></span>    
                                                 </div>
                                                 <div class="col-md-6 mt-1"  >
-                                                    <select name="userrole" id="userRole" class="form-control text-pading" placeholder="Select Role">
-                                                        <option>Select Role</option>
+
+                                                    <select name="userrole" id="userRole" class="form-control text-pading">
+                                                        <option value="" id="selectRole">Select-Role</option>
                                                         <option value="SubAdmin1">SubAdmin1</option>
                                                         <option value="SubAdmin2" >SubAdmin2</option>
                                                     </select>
-                                                    <span id="userrole" style="color: red"></span>    
+                                                    <span id="userroles" style="color: red"></span>    
                                                 </div>
                                             </div> <br>
-                                            <div class=" card-footer">
-                                                <button type="submit" id="addroleuser" class="btn btn-primary">Submit</button>
-                                                <small  id="User_Back"
-                                                    class="btn btn-success ">Back</small>
+
+                                                <div class="card-footer">
+                                                <span type="submit" class="btn btn-primary" name="submit" id="addroleuser">Submit</span>
+                                                <small class="btn btn-success" id="User_Back" >Back</small>
                                             </div>
                                         </div>
                                     </div> 

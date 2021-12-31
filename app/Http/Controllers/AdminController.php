@@ -99,7 +99,7 @@ class AdminController extends Controller {
             $imagevalue = count( ( array )$file );
             $fileArray = array( 'image' => $file );
             $rules = array(
-                'image' => 'mimes:jpeg,jpg,png,gif|required|max:1000000' // max 10000kb
+                'image' => 'mimes:jpeg,jpg,png,gif,svg|required|max:1000000' // max 10000kb
             ); 
             $validator = Validator::make( $fileArray, $rules );
             // if ( $imagevalue > 0 ) {

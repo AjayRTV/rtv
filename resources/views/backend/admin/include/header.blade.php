@@ -17,7 +17,7 @@
 
       use Illuminate\Auth\Events\Login;
 
-$user = Auth::user(); if($user != ""){ ?>
+      $user = Auth::user(); if($user != ""){ ?>
       <li class="nav-item">
         <!-- <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#" role="button">
           <i class="fas fa-th-large"></i>

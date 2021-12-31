@@ -116,7 +116,7 @@ span#User_Back {
         display: none;
         width: 45%;
         padding: 20px;
-        margin-left: 300px;
+        margin-left: 50%;
     }
     div.sticky {
         position: -webkit-sticky;
@@ -143,24 +143,6 @@ span#User_Back {
         margin-left: -5%;
         height: 36px;
     }
-
-    /* @media only screen and (max-width: 600px){
-        div.stickyform {
-            position: -webkit-sticky;
-            position: absolute;
-            margin-left: -89%;
-            top: 100%;
-            border: white;
-            border-radius: 2%;
-            padding: 20px;
-        }
-        span#User_Back {
-            width: 42%;
-            /* color: white; */
-            /* background: #2f7a2d;
-            height: 13%;
-        } */
-    /* } */
 }
 @media only screen and (min-width: 600px) {
 }

@@ -48,7 +48,7 @@
                                     <div class="card-footer">
                                         <button type="submit" id="btnSubmit" class="btn btn-primary">Submit</button>
                                         <button type="submit" id="back-btn"
-                                            class="btn btn-primary float-right">Back</button>
+                                            class="btn btn-success">Back</button>
                                     </div>
                                 </div>
                             </div>

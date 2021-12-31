@@ -23,7 +23,7 @@
                     @endforeach
                     
                     <div class="table-responsive mt-12" id="editAdmin">
-                        <table id="admin-table" class="align-middle mb-0 table table-border  table-striped table-hover" width="100%">
+                        <table id="admin-table" class="align-middle mb-0 table table-border" width="100%">
                             <thead>
                                 <tr>
                                     <th>  Name</th>
@@ -65,7 +65,7 @@
 
                                     <div class="card-footer">
                                         <button type="submit" class="btn btn-primary" id="Adminadd">Submit</button>
-                                        <span  class="btn btn-primary" id="AdminBack" >Back</span>
+                                        <span  class="btn btn-success" id="AdminBack" >Back</span>
                                     </div>
                                 </div>
                             </div>   
@@ -86,7 +86,7 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="table-responsive mt-5" id="animateTable">  
-                                                <table id="data-table" class="align-middle mb-0 table table-border  table-striped table-hover " width="100%">
+                                                <table id="data-table" class="align-middle mb-0 table table-border" width="100%">
                                                 <!-- <table id="data-table"  class="align-middle mb-0 table table-border  table-striped table-hover" cellspacing="0" width="100%"> -->
                                                     <thead>
                                                         <tr>
@@ -114,7 +114,7 @@
                             <form  method="get" id="saveRoleData" >
                                 @csrf    
                                 <!-- <div class="row">  -->
-                                <div class="mb-sm-12">
+                                <div class="col-sm-6">
                                     <div class="row form-row design">
                                         <form method="POST"  class="UpdateAdminData" enctype="multipart/form-data" id="form1" >
                                             @csrf
@@ -155,7 +155,7 @@
                                                     <span id="userrole" style="color: red"></span>    
                                                 </div>
                                             </div> <br>
-                                            <div class="card-footer">
+                                            <div class=" card-footer">
                                                 <button type="submit" id="addroleuser" class="btn btn-primary">Submit</button>
                                                 <small  id="User_Back"
                                                     class="btn btn-success ">Back</small>

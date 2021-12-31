@@ -46,11 +46,11 @@
                                         <input type="hidden" name="userid" class="form-control" id="userid" placeholder="Enter email"  value=" {{  $admindatas->id }} ">
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputPassword1">User-Name</label>
+                                        <label for="exampleInputPassword1">User Name</label>
                                         <input type="text" class="form-control" name="username" id="username"  value=" {{  $admindatas->name }} ">
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputPassword1">Email-Address</label>
+                                        <label for="exampleInputPassword1">Email Address</label>
                                         <input type="email" name="email" class="form-control" id="adminemail" aria-describedby="emailHelp" value=" {{  $admindatas->email }} ">
                                     </div>
                                     
@@ -76,7 +76,7 @@
                 <div id="userroleForm">
                      <!-- AddUser button -->
                     <div class="addfrom-btn mb-5">
-                        <button id="Mybtn" class="btn btn-primary float-right add-bttn">Add-Role</button>
+                        <button id="Mybtn" class="btn btn-primary float-right add-bttn">Add Role</button>
                     </div>
                     <!-- <div class="table-responsive  mt-5 " id="animateTable"> -->
                     <div class="content " id="animateTable">
@@ -148,7 +148,7 @@
                                                 </div>
                                                 <div class="col-md-6 mt-1"  >
                                                     <select name="userrole" id="userRole" class="form-control text-pading" placeholder="Select Role">
-                                                        <option value="selectrole"  >Select Role</option>
+                                                        <option>Select Role</option>
                                                         <option value="SubAdmin1">SubAdmin1</option>
                                                         <option value="SubAdmin2" >SubAdmin2</option>
                                                     </select>
@@ -156,8 +156,9 @@
                                                 </div>
                                             </div> <br>
                                             <div class="card-footer">
-                                                <button type="submit" class="btn btn-primary" name="submit" id="addroleuser">Submit</button>
-                                                <span class="btn btn-primary" id="User_Back" >Back</span>
+                                                <button type="submit" id="addroleuser" class="btn btn-primary">Submit</button>
+                                                <small  id="User_Back"
+                                                    class="btn btn-success ">Back</small>
                                             </div>
                                         </div>
                                     </div> 

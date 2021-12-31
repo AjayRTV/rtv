@@ -25,6 +25,7 @@ $(document).ready(function(){
                 if( $.each(response.data, function( index, value ) {
                     $('#roleId').val(value.id);
                     $('#first-name').val(value.name);
+                    $('#error').text('');
                 }));
             }
         });

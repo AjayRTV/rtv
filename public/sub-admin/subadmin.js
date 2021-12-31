@@ -1,10 +1,7 @@
 $(document).ready(function () {
-
     $("#formButton").click(function () {
         $("#hideform").toggle();
     });
-     
-
     // ----------------------  [ Data Table ] --------------------
     var table = $('#data-table').DataTable({
         processing: false,
@@ -20,20 +17,17 @@ $(document).ready(function () {
                 return row.firstName + ' ' + row.lastName + ' ';
             }
         },
-        
         {
             data: 'contact',
         },
         {
             data: 'email',
         },
-        
         {
             data: 'role',
         },
         ]
     });
-   
     // ----------------------  [ user Role ] ----------------------
     $('#Mybtn').click(function () {
         $('#animateTable').animate({ width: "50%" });
@@ -45,27 +39,24 @@ $(document).ready(function () {
         $("#password").val("");
         $("#email").val("");
         $("#userID").val("");
-        $("#userRole").val("selectrole");
+        $("#selectRole").val("userRole");
         setTimeout(function() {
             window.location.reload();
        },1000000000);
     });
-
     //  ------------------- [ user back ] -------------------------
-    $('#User_Back').click(function () { 
+    $('#User_Back').click(function () {
         $('#animateTable').animate({ width: "100%" });
         $("#MyForm").hide();
-        $('#fstname').text(''); 
+        $('#fstname').text('');
         $('#lstname').text('');
         $('#contacts').text('');
         $('#emails').text('');
-        $('#passwords').text(''); 
-
+        $('#passwords').text('');
     });
-    
     //  ------------------- [ Update Data user role] -------------------------
-     $("#addroleuser").on('click', function (e) { 
-    //  $('input').keyup(function () { 
+     $("#addroleuser").on('click', function (e) {
+    //  $('input').keyup(function () {
         e.preventDefault();
         var data = $('form').serialize();
         var fname = $("#first-name").val();
@@ -76,12 +67,12 @@ $(document).ready(function () {
         var regExp = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         var password = $("#password").val();
         var passwords = $("#password").val().length;
-        var userrole = $("#userroles").val();
+        var userrole = $("#userrole").val();
         var userid = $("#userID").val().length;
         var userIds = $("#userID").val();
         // ---------------- ['update_user Role'] --------------------
         if(userid > 0){
-            if( fname == "" || lname =="" || contact == "" || email =="" || password == "" || !email.match(regExp) || contact < 10 || passwords < 6 ){
+            if( fname == "" || lname =="" || contact == "" || email =="" || password == "" || !email.match(regExp) || contact < 10   ){
                 if (fname == "") {
                     $('#fstname').text('Enter First-Name');
                 }
@@ -90,8 +81,8 @@ $(document).ready(function () {
                 }
                 if (contact == 0) {
                     $('#contacts').text('Enter Contact');
-                } 
-            if (email == "") {
+                }
+                if (email == "") {
                     $('#emails').text('Enter mail');
                 }
                 if (password == 0) {
@@ -129,20 +120,18 @@ $(document).ready(function () {
                     } else if (contact == 10 && contact < 13) {
                         $("#contacts").text("");
                     }
-
                     var emails = $("#email").val().length;
                     var email = $("#email").val();
                     var regExp = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
                     if(emails == 0   )
                     {
-                        $('#emails').text('Email is Required'); 
+                        $('#emails').text('Email is Required');
                     }
                     else if (!email.match(regExp)) {
                         $('#emails').text('Invalid Email');
                     }
                     else if (email != "" && email.match(regExp)) {
-                        $('#emails').text(''); 
+                        $('#emails').text('');
                     }
                     var password = $("#password").val().length;
                     if (password == 0) {
@@ -156,12 +145,10 @@ $(document).ready(function () {
                     else if (password > 15) {
                         $('#passwords').text('Enter Max  12 Charactor');
                         return false;
-
                     }
                     else if (password == 6 && password <= 15) {
                         $('#passwords').text('');
                     }
-                    
                 });    
             }    
             else {
@@ -175,9 +162,8 @@ $(document).ready(function () {
                     type: "get",
                     dataType: "json",
                     data: data+"&userID="+userIds,
-                    
                     success: function (data) {
-                            $("#saveRoleData")[0].reset(); 
+                            $("#saveRoleData")[0].reset();
                             $('#animateTable').animate({ width: "100%" });
                             $('#data-table').DataTable().ajax.reload();
                             $('#MyForm').hide();
@@ -198,15 +184,12 @@ $(document).ready(function () {
                             "progressBar" : true
                         }
                             toastr.error("Duplicate Mail");
-                    
                     }
-                
                 });
             }
         }
         // ------------------- ['User Role Insert] ---------------------
         else{
-           
             if( fname == "" || lname =="" || contact == "" || email =="" || password == "" || !email.match(regExp) || contact < 10 || passwords < 6 ){
                 if (fname == "") {
                     $('#fstname').text('Enter First-Name');
@@ -216,8 +199,8 @@ $(document).ready(function () {
                 }
                 if (contact == 0) {
                     $('#contacts').text('Enter Contact');
-                } 
-            if (email == "") {
+                }
+                if (email == "") {
                     $('#emails').text('Enter mail');
                 }
                 if (password == 0) {
@@ -255,20 +238,18 @@ $(document).ready(function () {
                     } else if (contact == 10 && contact < 13) {
                         $("#contacts").text("");
                     }
-
                     var emails = $("#email").val().length;
                     var email = $("#email").val();
                     var regExp = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
                     if(emails == 0   )
                     {
-                        $('#emails').text('Email is Required'); 
+                        $('#emails').text('Email is Required');
                     }
                     else if (!email.match(regExp)) {
                         $('#emails').text('Invalid Email');
                     }
                     else if (email != "" && email.match(regExp)) {
-                        $('#emails').text(''); 
+                        $('#emails').text('');
                     }
                     var password = $("#password").val().length;
                     if (password == 0) {
@@ -282,12 +263,10 @@ $(document).ready(function () {
                     else if (password > 15) {
                         $('#passwords').text('Enter Max  12 Charactor');
                         return false;
-
                     }
                     else if (password == 6 && password <= 15) {
                         $('#passwords').text('');
                     }
-                    
                 });    
             }    
             else {
@@ -302,7 +281,7 @@ $(document).ready(function () {
                     dataType: "json",
                     data: data,
                     success: function (data) {
-                            // $("#saveRoleData")[0].reset(); 
+                            // $("#saveRoleData")[0].reset();
                             $('#animateTable').animate({ width: "100%" });
                             $('#data-table').DataTable().ajax.reload();
                             $('#MyForm').hide();
@@ -324,18 +303,20 @@ $(document).ready(function () {
                             "progressBar" : true
                         }
                             toastr.error("Duplicate Mail");
-                    
                     }
-                
                 });
             }
         }    
     });
-
     // ---------------- ['Eit_user Role'] --------------------
     $("#data-table").on('click', 'td', function (){
         var data =  table.row( this ).data();
-        console.log(data); 
+        $("#fstname").text(" ");
+        $("#lstname").text(" ");
+        $('#emails').text('');
+        $('#passwords').text('');
+        $("#contacts").text("");
+        console.log(data);
         $('#user-Role > option[data="'+ userrole +'"]').prop('selected', true);
         $('#animateTable').animate({ width: "50%" });
         $('#MyForm').show();
@@ -354,14 +335,9 @@ $(document).ready(function () {
                     $("#email").val(value.email);
                     $("#password").val(value.password);
                     $("#userRole").val(value.role).change();
-                })); 
+                }));
             }
         });
     });
-
-
-
-    
     // ---------------------------- ['  End For Document Class '] ---------------------------
 });
-

@@ -18,7 +18,6 @@ use Illuminate\Support\Facades\Route;
 
 
 class subAdminController extends Controller {
-
     // ---------------- [ Role user Add ] ----------------
     public function userRoleAdd( Request $request ) {
         try {
@@ -34,7 +33,6 @@ class subAdminController extends Controller {
             ] );
          }
     }
-
     // ------------------ [ 'update User' ] --------------
     public function editUser( Request $request ) {
         try {
@@ -49,7 +47,6 @@ class subAdminController extends Controller {
             ] );
         }
     }
-
     // ----------------- ['update User] ------------------
     public function updateUser( Request $request ) {
         try {   
@@ -69,7 +66,19 @@ class subAdminController extends Controller {
             ] );
         }
     }
-
-    // ################## End Class ###############
+    public function changeUserStatus(Request $request){
+        
+        try{ 
+            // $user =  DB::table('userrole')->where('id', $request->user_id)->update(['status' => $request->status]);
+            // $userData =  DB::table('userrole')->get();
+            $userId =DB::table('userrole')->select('id')->get();
+            // print_r($userId);exit;
+            // $user = DB::table('userrole')->where('status',$request->isChecked)->get();
+            // print_r($user);
+            return response()->json( [  'userID' => $userId ] );
+        } catch(\Exception $e){
+            return response()->json(['false'=>'User status can not  change successfully.']);
+        }
+    }
 
 }

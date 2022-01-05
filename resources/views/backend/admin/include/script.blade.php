@@ -37,7 +37,8 @@
 <script src="{{asset('sub-admin/userrole.js')}}" defer></script>
 <script src="{{asset('sub-admin/role.js')}}" defer></script>
 
-
+{{-- toggle script --}}
+<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>

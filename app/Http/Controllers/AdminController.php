@@ -1,5 +1,7 @@
 <?php
 namespace App\Http\Controllers;
+
+use App\Models\userRole;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\DB;
@@ -9,10 +11,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Session;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Contracts\DataTable;
-use DataTables;
 use Exception;
 // use Dotenv\Validator;
 use Illuminate\Support\Facades\Validator;
+use Yajra\DataTables\Facades\DataTables;
 
 class AdminController extends Controller {
     //-------------------- ['Login'] ------------------
@@ -191,9 +193,17 @@ class AdminController extends Controller {
     // = -------------- [ ' Show Data into UserTable ' ] -------------- -=
     public function getUserRole( Request $request, User $user ) {
         try {
-            $admin_data = DB::table( 'users' )->get();
-            $data = DB::table( 'userrole' )->get();
-            return response()->json( [ 'admin_data' => $admin_data , 'data' => $data ] );
+            if($request->ajax()){
+                $data = userRole::select('*')->get();
+                return datatables::of($data)
+                ->addColumn('action', function($row){
+                        return '<a class="badge badge-success" id="status_filter" ><i class="fas fa-thumbs-up"></i></a>';
+                        return '<a class="badge badge-danger" id="status_filter" ><i class="fas fa-thumbs-down"></i></a>';
+                        return false;
+               })
+               ->rawColumns(['action'])
+               ->toJson();
+            }
         } 
         catch ( \Exception $e ) {
             return Redirect::back()->with( 'faild');

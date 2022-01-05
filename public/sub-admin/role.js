@@ -1,16 +1,26 @@
 $(document).ready(function(){
     /*------------- UserRoleList Table ------------------*/
-         var table = $('#role-table').DataTable({
-         processing: true,
-         serverSide: false,
-         ajax: "get-tableRole",
-         columns: [
-            { data: 'id', name: 'id',},
-            { data: 'name', name: 'name',},
-         ],
-         order: [[ 0, 'ASC' ]],
-         responsive: true
-       });
+    var table = $('#role-table').DataTable({
+        processing: true,
+        serverSide: true,
+        dataType: 'json',
+        ajax: 'get-tableRole',
+        columns: [
+            {data: 'id', name: 'id'},
+            {data: 'name', name: 'name'},
+        ]
+    });
+    //      var table = $('#role-table').DataTable({
+    //      processing: true,
+    //      serverSide: true,
+    //      ajax: "get-tableRole",
+    //      columns: [
+    //         { data: 'id', name: 'id',},
+    //         { data: 'name', name: 'name',},
+    //      ],
+    //      order: [[ 0, 'ASC' ]],
+    //      responsive: true
+    //    });
     //*----------------EditForm show click function -------------------*
        $("#role-table").on('click', 'td', function (){
         var data =  table.row( this ).data();

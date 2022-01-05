@@ -53,6 +53,7 @@ Route::get('get-tableRole', 'App\Http\Controllers\UserRoleController@getUserRole
 Route::get('insert-userRole', 'App\Http\Controllers\UserRoleController@insertUserRole')->name('insert-userRole');
 Route::get('edit-userRole', 'App\Http\Controllers\UserRoleController@editUserRole')->name('edit-userRole');
 Route::get('update-userRole', 'App\Http\Controllers\UserRoleController@updateUserRole')->name('update-userRole');
+Route::get('changeStatus', 'App\Http\Controllers\subAdminController@changeUserStatus')->name('changeStatus');
 Route::get('edit_user', 'App\Http\Controllers\subAdminController@editUser')->name('edit_user');
 Route::get('roleUpdate', 'App\Http\Controllers\subAdminController@updateUser')->name('roleUpdate');
 // =--------------------[' Get Data into Datatable '] -----------------=--------------=

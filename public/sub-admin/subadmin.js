@@ -8,25 +8,30 @@ $(document).ready(function () {
         serverSide: false,
         ajax: "get-userRole",
         columns: [
-            {data: 'id', name: 'id',
+            {"className": 'user-id',data: 'id', name: 'id',
             "visible": false,
             // "searchable": false
             },
             {
+                "className": 'details-control',
                 render: function ( data, type, row ) {
                 return row.firstName + ' ' + row.lastName + ' ';
-            }
-        },
-        {
-            data: 'contact',
-        },
-        {
-            data: 'email',
-        },
-        {
-            data: 'role',
-        },
+                }
+            },
+            {"className": 'details-control',data: 'contact',},
+            {"className": 'details-control',data: 'email',},
+            {"className": 'details-control',data: 'role',},
+            {"className": 'checkedData', data: 'action', name: 'action'},
         ]
+    });
+    table.on('click', 'td', '.badge', function (){
+       var status = document.getElementById('status_filter');
+            //    alert(table.draw());
+
+    });
+    $('.checkedData').on('click', function(){
+        alert();
+        // alert(table.draw());
     });
     // ----------------------  [ user Role ] ----------------------
     $('#Mybtn').click(function () {
@@ -345,7 +350,7 @@ $(document).ready(function () {
         }    
     });
     // ---------------- ['Eit_user Role'] --------------------
-    $("#data-table").on('click', 'td', function (){
+    $("#data-table").on('click', 'td.details-control', function (){
         var data =  table.row( this ).data();
         $("#fstname").text(" ");
         $("#lstname").text(" ");

@@ -98,6 +98,7 @@
                                                             <th>Contact</th>
                                                             <th>Email</th>
                                                             <th>Role</th>  
+                                                            <th>Action</th>
                                                         </tr>
                                                     </thead>                
                                                     <tbody>
@@ -158,6 +159,7 @@
                                                     </select>
                                                     <span id="userroles" style="color: red"></span>    
                                                 </div>
+                                    
                                             </div> <br>
 
                                                 <div class="card-footer">

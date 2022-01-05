@@ -11,9 +11,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Session;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Contracts\DataTable;
-use DataTables;
 use Exception;
 use App\role;
+use Yajra\DataTables\Facades\DataTables;
 
 class UserRoleController extends Controller{
     // --------------------- [ Role user Add ] ---------------------
@@ -42,8 +42,10 @@ class UserRoleController extends Controller{
     //*------------- Get Data In RoleTable ---------------
     public function getUserRoles(Request $request, User $user){
         try{
+            if($request->ajax()){
             $data = DB::table('role')->get();
-            return response()->json(['data' => $data]);
+            return Datatables::of($data)->toJson();
+            }
         } catch (Exception $e) {
             return response()->json('false');
         }

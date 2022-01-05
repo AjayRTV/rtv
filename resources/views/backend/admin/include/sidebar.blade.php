@@ -26,20 +26,18 @@
         <!-- =---------------------------- [ For Org ] ------------------------------= -->
         <li class="nav-item {{ (request()->is('org*')) ||  (request()->is('org*')) ||   (request()->is('addRole*'))  ? 'active menu-open' : '' }} " >
           <a href="" class="nav-link {{ (request()->is('org*')) ||  (request()->is('org*')) ||  (request()->is('addRole*'))  ? 'active' : '' }}">
-              <i class="fa fa-globe"></i>
+              <i class="fa fa-globe nav-icon"></i>
               <p> Org <i class="right fas fa-angle-left"></i> </p>
           </a>
           <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{route('org')}}" class="nav-link {{ (request()->is('org*')) ? 'active' : '' }}">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>org</p>
+                  <i class="fas fa-sitemap nav-icon"></i> <p>org</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{ route('addRole')}}" class="nav-link {{ (request()->is('addRole*')) ? 'active' : '' }}">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Role List</p>
+                  <i class="fas fa-address-book nav-icon"></i> <p>Role List</p>
                 </a>
               </li>  
           </ul>

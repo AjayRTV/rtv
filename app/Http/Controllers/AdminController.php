@@ -9,15 +9,15 @@ use Symfony\Component\HttpFoundation\Response;
 use Session;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Contracts\DataTable;
-use DataTables;
 use Exception;
 // use Dotenv\Validator;
 use Illuminate\Support\Facades\Validator;
+use DataTables;
 
 class AdminController extends Controller {
     //-------------------- ['Login'] ------------------
     protected function credentials( Request $request ) {
-        try {
+        try {  
             $credentials = $request->only( 'email', 'password' );
             if ( Auth::attempt( $credentials ) ) {
                 $user = User::all( 'name', 'id' );
@@ -30,8 +30,8 @@ class AdminController extends Controller {
     }
 
     //-------------------- ['tHEME'] -------------------
-    public function analytics( Request $request ) {
-        try {
+    public function analytics( Request $request ) { 
+        try { 
             $user = User::all( 'name', 'id' );
             $admindata = DB::table( 'userrole' )->get();
 
@@ -44,10 +44,21 @@ class AdminController extends Controller {
  
     //--------------------  ['Admin Data'] ---------------
     public function adminData( Request $request ) 
-    {
+    // public function adminData(Datatables $datatables)
+    {  
         try { 
-            $data = DB::table( 'users' )->get();
-            return response()->json( [ 'data' => $data] );
+            $data = DB::table( 'users' )->where('is_active', 1)->get();
+            return Datatables::of($data)
+            ->addIndexColumn()
+            ->addColumn('action', function($row){
+                // $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
+                // return $btn;
+            })
+            ->rawColumns(['action'])
+            ->make(true);
+
+
+            // return response()->json( [ 'data' => $data] );
         }catch ( \Exception $e ) {
             return Redirect::back()->with( 'faild', '' );
         }
@@ -63,7 +74,8 @@ class AdminController extends Controller {
             $editadmindata = '';
             $user = DB::table( 'users' )->get();
             $admindata = DB::table( 'users' )->get();
-            return view( 'backend.admin.subadmin.addAdmin' )->with( [ 'admindata' => $admindata, 'showtables', $showtables,  'editadmindata', $editadmindata, 'adminedit' => $adminedit, 'user' => $user ] );
+            $userRole = DB::table( 'roles' )->get();
+            return view( 'backend.admin.subadmin.addAdmin' )->with( [ 'admindata' => $admindata, 'showtables', $showtables,  'editadmindata', $editadmindata, 'adminedit' => $adminedit, 'user' => $user , 'userRole' => $userRole] );
         } catch ( \Exception $e ) {
             return Redirect::back()->with( 'faild', '' );
         }
@@ -93,25 +105,25 @@ class AdminController extends Controller {
     // -------------------- ['Update Admin'] ---------------
     public function updateAdmin( Request $request ) {
       try
-        {
+        { 
             $file = $request->image; 
             // $imagevalue = count( $request->image );
             $imagevalue = count( ( array )$file );
             $fileArray = array( 'image' => $file );
             $rules = array(
-                'image' => 'mimes:jpeg,jpg,png,gif,svg|required|max:1000000' // max 10000kb
+                'image' => 'mimes:jpeg,jpg,png,gif,svg|required' // max 10000kb
             ); 
             $validator = Validator::make( $fileArray, $rules );
             // if ( $imagevalue > 0 ) {
             if ( $validator->fails() && $imagevalue > 0 ) {
-                echo 'adasdasdasd';
-                exit;
-                // $admindata =  DB::update( 'update users set name = ?, email = ? where id = ?', [ $request->username, $request->email, $request->userid ] );
-                // $admindata = DB::table( 'users' )->get();
-                //  return response()->json( [ 'faild' => 200 ] );
+              
+                
+                $admindata =  DB::update( 'update users set name = ?, email = ? where id = ?', [ $request->username, $request->email, $request->userid ] );
+                $admindata = DB::table( 'users' )->get();
+                 return response()->json( [ 'faild' => 200 ] );
 
                 return Redirect::to( '/' )->back( 'faild', 'Image is Not Type extension' );
-            } else { 
+            } else {  
                 // ++++++++++++ Unlik Image +++++++++++++
                 if ( $file != '' ) {  
                     $dataimg = DB::table( 'users' )->get();
@@ -149,13 +161,22 @@ class AdminController extends Controller {
     }
     
     // ----------------------[ Edit Admin ]--------------------
-    public function editAdmin( Request $request ) {
-        // print_r($request->all());exit;
+    public function editAdmin( Request $request ) {  
        try {
-            $data = DB::table( 'users' )->where('id', $request->id)->get();
-            $admindata = DB::table( 'users' )->where( 'id', $request->adminid )->get();
-            // $editadmindata = DB::table( 'users' )->where( 'id', $request->adminid )->get();
-            return response()->json( [ 'admindata' => $admindata, 'data' => $data ] );
+            $admindata = DB::table( 'users' )->where('is_active', 1)->get();
+         
+            $data =  Datatables::of( $admindata )
+            ->addIndexColumn()
+            ->addColumn( 'action', function( $row ) {
+                $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
+                return $btn;
+            });
+             return response()->json( [ 'data' => $data ] );
+
+            // $data = DB::table( 'users' )->where('id', $request->id)->get();
+            // $admindata = DB::table( 'users' )->where( 'id', $request->id )->get();
+            // // $editadmindata = DB::table( 'users' )->where( 'id', $request->adminid )->get();
+            // return response()->json( [ 'admindata' => $admindata, 'data' => $data ] );
         }catch ( \Exception $e ) {
             return Response()->json( [
                 'success' => false,
@@ -166,16 +187,16 @@ class AdminController extends Controller {
     }
 
     // --------------------- [ User login ] ---------------------
-    public function userPostLogin( Request $request ) {
+    public function userPostLogin( Request $request ) { 
         try {
             $request->validate( [
                 'email'           =>    'required|email',
                 'password'        =>    'required|min:6'
-            ] );
+            ] ); 
             $user = DB::table( 'users' )->get();
-
+              echo $user; exit;  
             $adminData = DB::table( 'users' )->get();
-
+            print_r($adminData);exit;    
             $userCredentials = $request->only( 'email', 'password' );
             // check user using auth function
             if ( Auth::attempt( $userCredentials ) ) {
@@ -190,10 +211,20 @@ class AdminController extends Controller {
  
     // = -------------- [ ' Show Data into UserTable ' ] -------------- -=
     public function getUserRole( Request $request, User $user ) {
-        try {
+        try { 
             $admin_data = DB::table( 'users' )->get();
-            $data = DB::table( 'userrole' )->get();
-            return response()->json( [ 'admin_data' => $admin_data , 'data' => $data ] );
+            $data = DB::table( 'users' )->get();
+            return Datatables::of($data)
+            ->addIndexColumn()
+            ->addColumn('action', function($row){
+                //    $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
+                //    return $btn;
+            })
+            ->rawColumns(['action'])
+            ->make(true);    
+
+
+            // return response()->json( [ 'admin_data' => $admin_data , 'data' => $data ] );
         } 
         catch ( \Exception $e ) {
             return Redirect::back()->with( 'faild');

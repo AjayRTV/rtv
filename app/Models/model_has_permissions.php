@@ -4,20 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Permission\Traits\HasPermissions;
-use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Traits\HasRoles;
 
-class role extends Model {
+class model_has_permissions extends Model
+{
     use HasFactory,HasRoles;
 
-    protected $table = 'roles';
+     protected $table = 'role_has_permissions';
     protected $fillable = [
-        'name', 'guard_name',
+        'permission_id ', 'role_id',
     ];
 
      public function comptes()
     {
         return $this->hasMany('App\Compte') ;
     }
-
 }

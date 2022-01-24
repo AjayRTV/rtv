@@ -17,7 +17,7 @@ class HomeController extends Controller {
 
     public function __construct() {
 
-        // $data = $this->middleware( 'auth' );
+        $data = $this->middleware( 'auth' );
 
     }
 
@@ -32,14 +32,14 @@ class HomeController extends Controller {
         $user = User::all( 'name', 'id' );
 
         $adminData = DB::table( 'users' )->get();
+        $userRole = DB::table( 'roles' )->get();
 
         if ( Auth::check() ) {
 
-            return view( 'backend.admin.dashboard.mainIndex' )->with( [ 'user' => $user, 'adminData' => $adminData ] );
+            return view( 'backend.admin.dashboard.mainIndex' )->with( [ 'user' => $user, 'adminData' => $adminData, 'userRole' => $userRole ] );
 
         } else {
-            echo 2;
-            exit;
+
             return redirect::to( 'user-login' )->withSuccess( 'Oopps! You do not have access' );
 
         }

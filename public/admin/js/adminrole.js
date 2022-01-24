@@ -21,13 +21,14 @@ $(document).ready(function(){
                 data: 'email',
                 name: 'email'
             },
+            
         ]
     });
 
-    $('#showtable').click(function () {   ;
-        $('#editAdmin').animate({ width: "50%" });
-        $('#admineditform').show();
-    });
+    // $('#showtable').click(function () {   alert(1);
+    //     $('#editAdmin').animate({ width: "50%" });
+    //     $('#admineditform').show();
+    // });
     
     $('#AdminBack').click(function (e) { 
         e.preventDefault()
@@ -35,13 +36,13 @@ $(document).ready(function(){
         $("#admineditform").hide(); 
         $('#userroleForm').hide();
         $('#imgInp').val("");
-        $('#blah').ajaxForm({target: '.preview'}).submit();
+        // $('#blah').ajaxForm({target: '.preview'}).submit();
          
         
     });
 
       // $("#editAdmin").click(function(stay){  
-        $("#admin-table").on('click', 'td', function (stay){
+        $("#admin-table").on('click', 'td', function (stay){  
         var data =  table.row( this ).data();
         // console.log(data);    
         jQuery.ajax({
@@ -49,10 +50,15 @@ $(document).ready(function(){
             type: "get",
             data: data,
             success:function(data){    
-                //$('#editAdmin').animate({ width: "50%" });
+                $('#editAdmin').animate({ width: "55%" });
+
                 $(".UpdateAdminData").show();
                 $('#userroleForm').show();
-              
+                if( $.each(data.response, function( index, value ) {  alert(value);
+                    console.log($("#username").val(value.name));
+                    $("#adminemail").val(value.email);
+                    $("#img").html('<img src="http://127.0.0.1:8000/admin/img/'+value.image+'"width="50px" height="40px" id="blah">');
+                }));    
             } 
         });
         stay.preventDefault(); 
@@ -123,8 +129,6 @@ $(document).ready(function(){
                  $("#adminName").text("");
              }
         }
-         
-            
         else{
             $.ajax({
                 type:'post',
@@ -141,7 +145,6 @@ $(document).ready(function(){
                         $("#data-table").show();
                         $('#editAdmin').animate({ width: "100%" });
                         // $("#adminname").text(value.name);
-                        
                         // $('#adminemail').text(value.email); 
                         $("#imgInp").val("");
                         $('#admin-table').DataTable().ajax.reload();

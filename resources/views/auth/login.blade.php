@@ -4,7 +4,10 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="wrapper">
-           
+            @foreach ($adminData  as $adminimag)
+         
+            @endforeach
+            <div class="logo"> <img src="{{ asset('admin/img/' . $adminimag->image) }}" alt="logo"> </div>
             <div class="text-center mt-4 name"> Login </div>
             <form class="p-3 mt-3 loginbtn"  method="post" action="{{ route('login') }}">
                 @csrf

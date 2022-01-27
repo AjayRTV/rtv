@@ -92,6 +92,7 @@ $(document).ready(function () {
     //  $('input').keyup(function () { 
         e.preventDefault();
         var data = $('form').serialize();
+
         var fname = $("#first-name").val();
         var lname = $("#last-name").val();
         var contacts = $("#contact").val();
@@ -113,7 +114,7 @@ $(document).ready(function () {
 
       
         // ---------------- ['update_user Role'] --------------------
-        if(userid > 0){ alert("edit");
+        if(userid > 0){  
             if( fname == "" || lname =="" || contact == "" || email =="" || password == "" || !email.match(regExp) || contact < 10 || userrole == "Select-Role"  ){
                 if (fname == "") {
                     $('#fstname').text('*Enter First-Name');

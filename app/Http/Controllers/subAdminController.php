@@ -21,43 +21,40 @@ use Illuminate\Support\Facades\Route;
 use Symfony\Component\Console\Input\Input;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
-use assignRole;
 use Roles;
 use givePermissionTo;
 use App\Models\role_has_permissions;
+use App\Models\model_has_roles;
+
+
 
 
 class subAdminController extends Controller {
-
-    // ---------------- [ Role user Add ] ----------------
+   // ---------------- [ Role user Add ] ----------------
     public function userRoleAdd( Request $request ) {    
         try {  
-            // $user = Auth()->user();
-            // print_r($user);exit;    
             $user_pass = $request->password;
             $user_password = Hash::make( $user_pass );
             $duplicatemail = DB::table( 'users' )->where( 'email', $request->email )->get();
             if ( count( $duplicatemail ) == 0 ) {
-                $addRoleData = User::create([
+                $user = \App\Models\User::factory()->create([
                     'name' => $request->firstname,
                     'lastName' => $request->lastusername,
                     'contact' => $request->contact,
                     'email' => $request->email,
                     'password' => $user_password,
                     'role' => $request->userrole
-                ])->assignRole($request->input('userrole')); 
-                $data = DB::table('users')->orderBy("id", "desc")->get();
-                // print_r($data->id);exit;
-                // $data->assignRole($request->input('userrole'));
+                ]);
+                $role = DB::table('roles')->where('name', $request->userrole)->get();
+                $rolesave = $user->assignRole($request->userrole);
                 return response()->json( [ 'addRoleData' => $addRoleData ], 200 );
             }
-
         }catch( Exception $e ) {
             return Response()->json( [
                 'success' => false,
                 'data   ' => ''
-            ] );
-         }
+            ]);
+        }
     }
 
     // ------------------ [ 'update User' ] --------------
@@ -76,40 +73,23 @@ class subAdminController extends Controller {
     }
 
     // ----------------- ['update User] ------------------
-   public function updateUser( Request $request ) {
-        try {  
-           $id = Auth::user()->id == $request->userID;
-             print_r("Hello===".$id);exit;
-            $role = DB::table('roles')->where('name', $request->userrole)->get();
-            
-            $user = DB::table('users')->where('id', $request->userID)->get();
-            // print_r($user);exit;
-            $data =   $role->user()->attach($user);
-           
-
+    public function updateUser( Request $request ) {
+        print_r($this->middleware('auth'));exit();
+        try {   
             $user_pass = $request->password;
             $user_password = Hash::make( $user_pass );
-
-            $updateUser = array(
-               'name' => $request->firstname,
-                'lastName' => $request->lastusername,
-                'contact' => $request->contact,
-                'email' => $request->email,
-                'password' => $user_password 
-                );
-            foreach($updateUser as $updateUsers){
-                $updateUsers->assignRole("'".$request->userrole."'");
-            }
-            $updateRoleData = User::where("id", $request->userID)->update(["name" => $request->firstname , "lastName" => $request->lastusername , "contact" => $request->contact , 'email' => $request->email , 'password' =>$user_password , 'role' => $request->userrole ]);
-            // $updateRoleData = DB::select( " UPDATE users
-            //     SET name = '$request->firstname',
-            //         lastName = '$request->lastusername',
-            //         contact = '$request->contact',
-            //         email = '$request->email',
-            //         password = '$user_password',
-            //         role = '$request->userrole' WHERE id = '$request->userID' ");
-            
+            $user_pass = $request->password;
+            $user_password = Hash::make( $user_pass );
+            $updateRoleData = DB::select( " UPDATE users
+                SET name = '$request->firstname',
+                    lastName = '$request->lastusername',
+                    contact = '$request->contact',
+                    email = '$request->email',
+                    password = '$user_password',
+                    role = '$request->userrole' WHERE id = '$request->userID' ");
+                    // Auth()->user()->assignRole($request->input('userrole'));
                     return response()->json( [ 'updateRoleData' => $updateRoleData ] );
+
         } catch ( \Exception $e ) {
             return Response()->json([
                 'success' => false,

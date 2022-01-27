@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "24ec397c755ac253dbbe54faa7a42291",
+    "content-hash": "93b359228a8f89dc79f1f75092353af9",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4123,27 +4123,27 @@
         },
         {
             "name": "spatie/laravel-permission",
-            "version": "5.4.1",
+            "version": "5.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-permission.git",
-                "reference": "79f7dbf2b6b21d81209774f5726a0e9f4222dd92"
+                "reference": "6a3ed627cee28a552b5176c172ae0abc5eb30925"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/79f7dbf2b6b21d81209774f5726a0e9f4222dd92",
-                "reference": "79f7dbf2b6b21d81209774f5726a0e9f4222dd92",
+                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/6a3ed627cee28a552b5176c172ae0abc5eb30925",
+                "reference": "6a3ed627cee28a552b5176c172ae0abc5eb30925",
                 "shasum": ""
             },
             "require": {
-                "illuminate/auth": "^7.0|^8.0",
-                "illuminate/container": "^7.0|^8.0",
-                "illuminate/contracts": "^7.0|^8.0",
-                "illuminate/database": "^7.0|^8.0",
+                "illuminate/auth": "^7.0|^8.0|^9.0",
+                "illuminate/container": "^7.0|^8.0|^9.0",
+                "illuminate/contracts": "^7.0|^8.0|^9.0",
+                "illuminate/database": "^7.0|^8.0|^9.0",
                 "php": "^7.3|^8.0|^8.1"
             },
             "require-dev": {
-                "orchestra/testbench": "^5.0|^6.0",
+                "orchestra/testbench": "^5.0|^6.0|^7.0",
                 "phpunit/phpunit": "^9.4",
                 "predis/predis": "^1.1"
             },
@@ -4193,7 +4193,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-permission/issues",
-                "source": "https://github.com/spatie/laravel-permission/tree/5.4.1"
+                "source": "https://github.com/spatie/laravel-permission/tree/5.5.0"
             },
             "funding": [
                 {
@@ -4201,7 +4201,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-12-17T10:18:05+00:00"
+            "time": "2022-01-11T15:06:21+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

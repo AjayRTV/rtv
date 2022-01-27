@@ -49,7 +49,7 @@ form#form1{
 div.sticky {
     position: -webkit-sticky;
     position: absolute;
-    top: 680;
+    top: 555px;
     margin-right: 50;
   }
   .form-row.design {

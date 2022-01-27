@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-use App\Roles;
- 
+// use App\Models\Role;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Redirect;
@@ -54,12 +53,6 @@ class UserRoleController extends Controller {
     public function index( Request $request ) {
         try {
             $user = Auth::user();
-            // $role = Role::create( [ 'name' => 'writer' ] );
-            // $permission = Permission::create( [ 'name' => 'edit articles' ] );
-            // $role = Role::findById( 6 );
-            // $permission = Permission::findById( 5 );
-            // $user->givePermissionTo( 'edit posts' );
-            // $data = DB::table( 'role' )->get();
             return view( 'backend.admin.subadmin.addRole' )->with( [ 'user' => $user ] );
             return response()->json( [ 'user' => $user ] );
         } catch ( Exception $e ) {
@@ -74,10 +67,7 @@ class UserRoleController extends Controller {
             return Datatables::of( $data )
             ->addIndexColumn()
             ->addColumn( 'action', function( $row ) {
-                //    $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
-                //   return $btn;
-            }
-        )->rawColumns( [ 'action' ] )->make( true );
+            })->rawColumns( [ 'action' ] )->make( true );
 
         // return response()->json( [ 'data' => $data ] );
     } catch ( Exception $e ) {
@@ -91,14 +81,7 @@ public function insertUserRole( Request $request ) {
         $duplicate = DB::table( 'roles' )->where( 'name', $request->name )->get();
         // $rolepermission = new role_has_permissions();
         if ( count( $duplicate ) < 1 ) {     
-          
             $result = Role::create($request->all());
-            // $user = Auth()->user()->assignRole($request->input('name'));
-            // $role =  new Role();
-            // $role->name = $request->input('name');
-            // $result = $role->save();  
-            // $user = $result->assignRole($request->input('name'));
-            
             return response()->json( [ 'role' => $result ] );
         } else {
             return response()->json( 'false' );
@@ -134,16 +117,16 @@ public function updateUserRole( Request $request ) {
 public function permision( Request $request ) {  
     $permission = DB::table( 'permissions' )->get();
     $allUser = DB::table( 'roles' )->get();
-
-     // return Datatables::of( $data )
-     //        ->addIndexColumn()
-     //        ->addColumn( 'action', function( $row ) {
-     //            //    $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
-     //            //   return $btn;
-     //        }
-     //    )->rawColumns( [ 'action' ] )->make( true );
+    $rolestatus = DB::table( 'role_has_permissions' )->get();
+    // return Datatables::of( $data )
+    //       ->addIndexColumn()
+    //       ->addColumn( 'action', function( $row ) {
+    //       //    $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
+    //       //   return $btn;
+    //    }
+    // )->rawColumns( [ 'action' ] )->make( true );
     
-  return view( 'backend.admin.subadmin.permision' )->with( [ 'permission' => $permission, 'allUser' => $allUser ] );
+  return view( 'backend.admin.subadmin.permision' )->with( [ 'permission' => $permission, 'allUser' => $allUser , 'rolestatus' => $rolestatus] );
 }
 
 // ------------- Add Permision --------------
@@ -162,37 +145,22 @@ public function addPermision( Request $request ) {
         }
     }
 
-
     // ------------- Add Permision --------------
     public function givePermision( Request $request ) {  
         try { 
-
-            $model = new model_has_permissions();
-
-            
-            // print_r($model);exit;
-
-
-            $permission = Permission::find($request->user_id);
-            $role = Role::find($request->roleid);
-             foreach ($permission as $permissionTo) {
-
-                $data =  $role->name->givePermissionTo($permissionTo);
-                print_r($data);exit;
-           };print_r($data);exit;
-            // $data = $role->syncPermissions($request->get('permission'));
-            
-
-            $datasave = DB::select( " UPDATE roles SET status = '$request->status' where id = '$request->roleid' " );  
-            $role = Role::find($request->roleid);
-            
-
+            $datasave = DB::select( "UPDATE roles SET status = '$request->status' where id = '$request->roleid' " ); 
+            $roles = Role::find($request->roleid);
+            $permissions = Permission::find($request->user_id);
+            $permission = $permissions->where('id', $request->user_id)->update(array('name' => $permissions->name));
+            $role = $roles->where('id', $request->roleid)->update(array('name' => $roles->name));    
+            $saved = $roles->givePermissionTo($permissions);  
             if ($request->status == 1) {  
                 $role = Role::find($request->roleid);
                 $permission = Permission::find($request->user_id);
-                $saved = $role->givePermissionTo($permission);
-                
-                // $data = Auth()->user()->givePermissionTo($permission->name);        
+                // $permission->assignRole($role);
+                $saved = $permission->syncRole($role);
+                // print_r($saved);exit;
+                // $saved = $role->givePermissionTo($permission);
                 return response()->json( [ 'datasave' => $datasave ] );
             }else{
                 $role = Role::find($request->roleid);
@@ -200,17 +168,19 @@ public function addPermision( Request $request ) {
                 $permission->removeRole($role);
                 return response()->json('success');
             } 
-        } 
-        catch ( Exception $e ) {
+        }catch ( Exception $e ) {
             return response()->json( 'false' );
-        }
+         }
     }
-
-
+  
     // For Demo 
-
     public function Demo(){
         return view('backend.admin.subadmin.demo');
+    }
+
+    // For Test 
+    public function Test(){
+        return view('backend.admin.subadmin.test');
     }
 
 

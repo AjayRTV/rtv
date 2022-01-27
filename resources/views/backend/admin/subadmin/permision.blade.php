@@ -21,7 +21,7 @@
                     </div>
                 @endif 
                 <div id="permisionTable"> 
-                   <?php /* <table id="example1" class="table table-bordered table-striped">
+                    <?php /* <table id="example1" class="table table-bordered table-striped">
                       <thead>
                       <th>permisions</th>
                             @foreach($allUser as $allUsers)
@@ -62,7 +62,6 @@
                       </tr>
                      </tbody>
                     </table> */ ?>
-
                       <div class="table-responsive mt-12" id="permisiontable">
                         <table id="permision-table" class="align-middle mb-0 table table-border  table-striped table-hover" width="100%">
                             <thead>
@@ -72,24 +71,19 @@
                                  @endforeach
                             </thead>
                             <tbody id="showtable">
+                              
+                            
                                @foreach($permission as $permisions)
                                 <tr>
                                     <td>{{ $permisions->name }}  </td> 
                                      @foreach($allUser as $allUsers)
-                                     <td>
+                                    <td>
                                         <label class="switch">
-                                            <input data-id="{{$permisions->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" id="roleid" value="{{ $allUsers->id }}" data- ="InActive" {{ $allUsers->status ? 'checked' : '' }}>
+                                            <input data-id="{{$permisions->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" id="roleid" value="{{ $allUsers->id }}" data="InActive" {{ $allUsers->status ? 'checked' : '' }}>
                                             <span class="slider"></span>
                                         </label>
-                                    </td> 
-                                       @endforeach
-                                  <!--   <td>
-                                        <label class="switch">
-                                            <input data-id="{{$permisions->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" {{ $allUsers->status ? 'checked' : '' }}>
-                                            <span class="slider"></span>
-                                        </label>
-                                    </td>  -->
-                                     
+                                    </td>    
+                                     @endforeach 
                                 </tr>
                                @endforeach 
                             </tbody>

@@ -33,15 +33,15 @@
               <p> Org  <i class="right fas fa-angle-left"></i> </p>
           </a>
           <ul class="nav nav-treeview">
-              @can('org')
+              @can('org')  
               <li class="nav-item">
                 <a href="{{route('org')}}" class="nav-link {{ (request()->is('org*')) ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>org</p>
                 </a>
               </li>
-              @endcan
-               @can('addRole')
+              @endcan  
+              @can('addRole') 
               <li class="nav-item">
                 <a href="{{ route('addRole')}}" class="nav-link {{ (request()->is('addRole*')) ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
@@ -49,7 +49,7 @@
                 </a>
               </li> 
               @endcan
-              @can('permision')
+              @can('permision') 
               <li class="nav-item">
                 <a href="{{ route('permision')}}" class="nav-link {{ (request()->is('permision*')) ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
@@ -58,24 +58,24 @@
               </li>  
               @endcan
           </ul>
-        </li> 
+        </li>    
         <!-- For Demo -->
-        @can('demo')
-          <li class="nav-item {{ (request()->is('demo*')) ? 'active menu-open' : '' }} " >          
-           <a href="{{route('demo')}}" class="nav-link {{ (request()->is('demo*')) ||  (request()->is( 'demo*')) ? 'active' : '' }}">
-                <i class="fa fa-globe"></i>
-                <p> Demo </p>
-            </a>
-          </li>  
-        @endcan
-        @can('test')
-          <li class="nav-item {{ (request()->is('test*')) ? 'active menu-open' : '' }} " >          
-           <a href="{{route('test')}}" class="nav-link {{ (request()->is('test*')) ||  (request()->is('test*')) ? 'active' : '' }}">
-                <i class="fa fa-globe"></i>
-                <p> Test </p>
-            </a>
-          </li>  
-        @endcan
+         @can('demo') 
+            <li class="nav-item {{ (request()->is('demo*')) ? 'active menu-open' : '' }} " >          
+             <a href="{{route('demo')}}" class="nav-link {{ (request()->is('demo*')) ||  (request()->is( 'demo*')) ? 'active' : '' }}">
+                  <i class="fa fa-globe"></i>
+                  <p> Demo </p>
+              </a>
+            </li>  
+            @endcan
+            @can('test') 
+            <li class="nav-item {{ (request()->is('test*')) ? 'active menu-open' : '' }} " >          
+              <a href="{{route('test')}}" class="nav-link {{ (request()->is('test*')) ||  (request()->is('test*')) ? 'active' : '' }}">
+                  <i class="fa fa-globe"></i>
+                  <p> Test </p>
+              </a>
+            </li>  
+          @endcan
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

@@ -78,10 +78,18 @@
                                     <td>{{ $permisions->name }}  </td> 
                                      @foreach($allUser as $allUsers)
                                     <td>
+                                        {{ $allUsers->status }}
+                                        @if($allUsers->status == 0)
+                                            <label class="switch">
+                                            <input data-id="{{$permisions->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" id="roleid" value="{{ $allUsers->id }}" data="InActive" {{ $allUsers->status ? : '' }}>
+                                            <span class="slider"></span>
+                                        </label>
+                                        @else
                                         <label class="switch">
                                             <input data-id="{{$permisions->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" id="roleid" value="{{ $allUsers->id }}" data="InActive" {{ $allUsers->status ? 'checked' : '' }}>
                                             <span class="slider"></span>
                                         </label>
+                                        @endif
                                     </td>    
                                      @endforeach 
                                 </tr>

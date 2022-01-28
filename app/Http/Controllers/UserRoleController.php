@@ -152,15 +152,11 @@ public function addPermision( Request $request ) {
             $roles = Role::find($request->roleid);
             $permissions = Permission::find($request->user_id);
             $permission = $permissions->where('id', $request->user_id)->update(array('name' => $permissions->name));
-            $role = $roles->where('id', $request->roleid)->update(array('name' => $roles->name));    
-            $saved = $roles->givePermissionTo($permissions);  
             if ($request->status == 1) {  
                 $role = Role::find($request->roleid);
                 $permission = Permission::find($request->user_id);
-                // $permission->assignRole($role);
-                $saved = $permission->syncRole($role);
-                // print_r($saved);exit;
-                // $saved = $role->givePermissionTo($permission);
+                $permission->assignRole($role);
+                
                 return response()->json( [ 'datasave' => $datasave ] );
             }else{
                 $role = Role::find($request->roleid);

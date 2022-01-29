@@ -3,7 +3,7 @@
 <!-- Content Wrapper. Contains page content -->
 @yield('section')
 <!-- Main content -->
-    <section class="content"><br>
+    <section class="content" id="adminpannel"><br>
         <div class="container-fluid">
             <h2>Manage Admin</h2><br>  
             <!--  ------------------------ [Edit Admin] -----------------------  -->
@@ -19,9 +19,8 @@
                     </div>
                 @endif
                 <div class="col-sm-12">
-                    @foreach($admindata as $admindatas)
-                    @endforeach
-                    
+                  
+                 
                     <div class="table-responsive mt-12" id="editAdmin">
                         <table id="admin-table" class="align-middle mb-0 table table-border  table-striped table-hover" width="100%">
                             <thead>
@@ -43,23 +42,21 @@
                             <div class="card card-primary card-from">
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <input type="hidden" name="userid" class="form-control" id="userid" placeholder="Enter email"  value=" {{  $admindatas->id }} ">
+                                        <input type="hidden" name="userid" class="form-control" id="userid" placeholder="Enter email" >
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">User-Name</label>
-                                        <input type="text" class="form-control" name="username" onkeypress="return /[a-z, ' ']/i.test(event.key)" id="username"  value="{{$admindatas->name}}">
+                                        <input type="text" class="form-control" name="username" onkeypress="return /[a-z, ' ']/i.test(event.key)" id="username">
                                         <span id="adminName" style="color: red;"></span>
                                     </div>
                                     
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Email-Address</label>
-                                        <input type="email" name="email" class="form-control" id="adminemail" aria-describedby="emailHelp" value=" {{  $admindatas->email }} ">
+                                        <input type="email" name="email" class="form-control" id="adminemail" aria-describedby="emailHelp">
                                         <span id="adminEmail" style="color: red;"></span>
                                     </div>
-                                 
-                                    <div class="col-md-12 mb-2">
-                                        <img id="blah" src="{{asset('admin/img/' . $admindatas->image)}}" alt="preview image" style="max-height: 60px;" />
-                                    </div>
+                                    <div class="col-md-12 mb-2" id="img"></div>
+                                    
                                     <div class="col-md-12">
                                         <div class="form-group">
                                           <input accept="image/*" type='file' id="imgInp" name="image" />
@@ -79,7 +76,7 @@
                 <div id="userroleForm">
                      <!-- AddUser button -->
                     <div class="addfrom-btn mb-5">
-                        <button id="Mybtn" class="btn btn-primary float-right add-bttn">Add-Role</button>
+                        <button id="Mybtn" class="btn btn-primary float-right add-bttn">Add-User</button>
                     </div>
                     <!-- <div class="table-responsive  mt-5 " id="animateTable"> -->
                     <div class="content " id="animateTable">
@@ -97,6 +94,7 @@
                                                             <th>Full Name</th>
                                                             <th>Contact</th>
                                                             <th>Email</th>
+                                                            <th>password</th>
                                                             <th>Role</th>  
                                                         </tr>
                                                     </thead>                
@@ -152,8 +150,12 @@
                                                 <div class="col-md-6 mt-1"  >
                                                     <select name="userrole" id="userRole" class="form-control text-pading">
                                                         <option value="" id="selectRole">Select-Role</option>
-                                                        <option value="SubAdmin1">SubAdmin1</option>
-                                                        <option value="SubAdmin2" >SubAdmin2</option>
+                                                        @foreach($userRole as $roles)
+                                                        <option value="{{$roles->name}}" >{{$roles->name}}</option>
+                                                        
+                                                        @endforeach
+                                                        <!-- <option value="SubAdmin1">SubAdmin1</option>
+                                                        <option value="SubAdmin2" >SubAdmin2</option> -->
                                                     </select>
                                                     <span id="userroles" style="color: red"></span>    
                                                 </div>

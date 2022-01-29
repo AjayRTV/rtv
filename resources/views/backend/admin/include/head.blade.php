@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Admin | Pannel</title>
- 
-  @foreach($user as $images)
-  <link rel="shortcut icon" type="image/x-icon" href="{{ URL::to('admin/img/' . $images->image) }}"/>
-  @endforeach
+  <?php  $user = Auth::user(); if($user != ""){ ?>
+   
+  <link rel="shortcut icon" type="image/x-icon" href="{{asset('admin/img/'.Auth::user()->image)}} "/>
+  <?php } ?>
   <!-- Google Font: Source Sans Pro -->
   
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -36,6 +36,8 @@
   <!-- ------------ [ subadmin ] ---------- -->
   <link rel="stylesheet" href="{{asset('sub-admin/subadmin.css')}}">
   <link rel="stylesheet" href="{{asset('sub-admin/role.css')}}">
+  <!-- -------------------['Permision']----------------- -->
+  <link rel="stylesheet" href="{{asset('sub-admin/permision.css')}}">
    <!-- ------------ [ Toast ] ---------- -->
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
    <!-- =-------------[ For DataTable ]------------------= -->

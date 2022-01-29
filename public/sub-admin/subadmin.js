@@ -4,6 +4,20 @@ $(document).ready(function () {
         $("#hideform").toggle();
     });
      
+    // Permision 
+    $('#AddPermision').click(function(e){ alert(1);
+        $('#permisionTable').animate({ width: "50%" });
+        
+        $("#form1").show();
+    });
+    $(function () {
+        $("#userPermision").DataTable({
+          "responsive": true, "lengthChange": false, "autoWidth": false,
+          "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+     
+      });
+
 
     // ----------------------  [ Data Table ] --------------------
     var table = $('#data-table').DataTable({
@@ -17,7 +31,7 @@ $(document).ready(function () {
             },
             {
                 render: function ( data, type, row ) {
-                return row.firstName + ' ' + row.lastName + ' ';
+                return row.name + ' ' + row.lastName + ' ';
             }
         },
         
@@ -26,6 +40,9 @@ $(document).ready(function () {
         },
         {
             data: 'email',
+        },
+        {
+            data: 'password',
         },
         
         {
@@ -71,10 +88,11 @@ $(document).ready(function () {
     });
     
     //  ------------------- [ Update Data user role] -------------------------
-     $("#addroleuser").on('click', function (e) { 
+     $("#addroleuser").on('click', function (e) {  
     //  $('input').keyup(function () { 
         e.preventDefault();
         var data = $('form').serialize();
+
         var fname = $("#first-name").val();
         var lname = $("#last-name").val();
         var contacts = $("#contact").val();
@@ -91,12 +109,12 @@ $(document).ready(function () {
         // var firstname = jQuery(this).val(); alert(firstname);
         
 
-        var userid = $("#userID").val().length;
+        var userid = $("#userID").val().length; 
         var userIds = $("#userID").val();
 
       
         // ---------------- ['update_user Role'] --------------------
-        if(userid > 0){
+        if(userid > 0){  
             if( fname == "" || lname =="" || contact == "" || email =="" || password == "" || !email.match(regExp) || contact < 10 || userrole == "Select-Role"  ){
                 if (fname == "") {
                     $('#fstname').text('*Enter First-Name');
@@ -118,9 +136,6 @@ $(document).ready(function () {
                 }else{
                     $('#userroles').text("");   
                 } 
-
-                
-
 
                 $('input').keyup(function () {
                     var fname = $("#first-name").val().length;
@@ -178,11 +193,11 @@ $(document).ready(function () {
                         $('#passwords').text('*Enter password Min 6 Charactor');
                         return false;
                     }
-                    else if (password > 15) {
-                        $('#passwords').text('*Enter Max  12 Charactor');
-                        return false;
+                    // else if (password > 15) {
+                    //     $('#passwords').text('*Enter Max  12 Charactor');
+                    //     return false;
 
-                    }
+                    // }
                     else if (password == 6 && password <= 15) {
                         $('#passwords').text('');
                     }
@@ -216,24 +231,11 @@ $(document).ready(function () {
                             }
                                 toastr.success("Update User Data");
                     },
-                    error: function(data){
-                        $('#emails').text('Duplicate EMail');
-                        toastr.options =
-                        {
-                            "closeButton" : true,
-                            "progressBar" : true
-                        }
-                            toastr.error("Duplicate Mail");
-                    
-                    }
-                
                 });
-            }
+            } 
         }
         // ------------------- ['User Role Insert] ---------------------
-        else{
-          
-            
+        else{  
             if( fname == "" || lname =="" || contact == "" || email =="" || password == "" || !email.match(regExp) || contact < 10 || passwords < 6 || userrole == "Select-Role"  ){
                 if (fname == "") {
                     $('#fstname').text('*Enter First-Name');
@@ -335,7 +337,7 @@ $(document).ready(function () {
                     }
                 });
                 jQuery.ajax({
-                    url: "roleEdit",
+                    url: "roleAdd",
                     type: "get",
                     dataType: "json",
                     data: data,
@@ -392,7 +394,7 @@ $(document).ready(function () {
                 if( $.each(response.data, function( index, value ) {
                     var role = value.role;
                     $("#userID").val(value.id);
-                    $("#first-name").val(value.firstName);
+                    $("#first-name").val(value.name);
                     $("#last-name").val(value.lastName);
                     $("#contact").val(value.contact);
                     $("#email").val(value.email);

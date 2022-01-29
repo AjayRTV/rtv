@@ -13,7 +13,10 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.3",
-        "yajra/laravel-datatables-oracle": "^9.18"
+        "laravelcollective/html": "^6.2",
+        "mailjet/laravel-mailjet": "^3.0",
+        "spatie/laravel-permission": "^5.5",
+        "yajra/laravel-datatables-oracle": "^9.19"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
@@ -62,4 +65,9 @@
     },
     "minimum-stability": "dev",
     "prefer-stable": true
+
+ 
+
+
+
 }

@@ -127,6 +127,7 @@ $(document).ready(function(){
                         data: data,
                         dataType: "json",
                         success:function(data){ 
+                            console.log(data);
                             if(data == 'false'){
                                 $('#error').text("* Role Name is duplicate ");
                                 return false;

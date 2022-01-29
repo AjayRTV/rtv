@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class userRole extends Model {
-    use HasFactory;
+    use HasFactory,HasRoles;
 
     /**
     * @var mixed table
